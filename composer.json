@@ -1,0 +1,39 @@
+{
+    "name": "styleci/config",
+    "description": "StyleCI Config Is A Code Style Configuration Manager",
+    "keywords": ["config", "cs", "configuration", "StyleCI", "StyleCI", "Config", "Graham Campbell", "GrahamCampbell"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Graham Campbell",
+            "email": "graham@mineuk.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "symfony/yaml": "~2.3"
+    },
+    "require-dev": {
+        "graham-campbell/testbench": "~2.0"
+    },
+    "suggest": {
+        "illuminate/support": "Enables Laravel support (~5.0)."
+    },
+    "autoload": {
+        "psr-4": {
+            "StyleCI\\Config\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "StyleCI\\Tests\\Config\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
