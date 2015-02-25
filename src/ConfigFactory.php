@@ -33,16 +33,20 @@ class ConfigFactory
         $parsed = Yaml::parse($yaml);
         $config = new Config();
 
-        if ($level = Arr::get($parsed, 'level')) {
-            $config->setLevel($level);
+        if ($preset = Arr::get($parsed, 'preset')) {
+            $config->preset($preset);
         }
 
         if ($enabled = (array) Arr::get($parsed, 'enabled', [])) {
-            $config->setEnabled($enabled);
+            foreach ($enabled as $fixer) {
+                $config->enable($fixer);
+            }
         }
 
         if ($disabled = (array) Arr::get($parsed, 'disabled', [])) {
-            $config->setEnabled($disabled);
+            foreach ($disabled as $fixer) {
+                $config->disable($fixer);
+            }
         }
     }
 }
