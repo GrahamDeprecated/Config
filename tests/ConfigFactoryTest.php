@@ -23,33 +23,33 @@ class ConfigFactoryTest extends AbstractTestCase
 {
     public function testMakeConfig()
     {
-        $config = (new ConfigFactory())->make();
+        $fixers = (new ConfigFactory())->make()->getFixers();
 
-        $this->assertInArray('psr0', $config->getFixers());
-        $this->assertInArray('encoding', $config->getFixers());
-        $this->assertInArray('elseif', $config->getFixers());
-        $this->assertNotContains('strict_param', $config->getFixers());
+        $this->assertInArray('psr0', $fixers);
+        $this->assertInArray('encoding', $fixers);
+        $this->assertInArray('elseif', $fixers);
+        $this->assertNotContains('strict_param', $fixers);
     }
 
     public function testMakeConfigWithOptions()
     {
-        $config = (new ConfigFactory())->make(['preset' => 'symfony']);
+        $fixers = (new ConfigFactory())->make(['preset' => 'symfony'])->getFixers();
 
-        $this->assertInArray('unused_use', $config->getFixers());
+        $this->assertInArray('unused_use', $fixers);
     }
 
     public function testMakeConfigFromYml()
     {
-        $config = (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/config.yml'));
+        $fixers = (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/config.yml'))->getFixers();
 
-        $this->assertInArray('unused_use', $config->getFixers());
+        $this->assertInArray('unused_use', $fixers);
     }
 
     public function testMakeConfigFromYmlWithEnablers()
     {
-        $config = (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/custom.yml'));
+        $fixers = (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/custom.yml'))->getFixers();
 
-        $this->assertInArray('phpdoc_no_package', $config->getFixers());
-        $this->assertNotContains('psr0', $config->getFixers());
+        $this->assertInArray('phpdoc_no_package', $fixers);
+        $this->assertNotContains('psr0', $fixers);
     }
 }

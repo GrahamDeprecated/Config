@@ -23,22 +23,18 @@ class ConfigTest extends AbstractTestCase
 {
     public function testPreset()
     {
-        $config = new Config();
+        $fixers = (new Config())->preset('styleci')->getFixers();
 
-        $config->preset('styleci');
-
-        $this->assertInArray('psr0', $config->getFixers());
-        $this->assertInArray('encoding', $config->getFixers());
-        $this->assertInArray('elseif', $config->getFixers());
+        $this->assertInArray('psr0', $fixers);
+        $this->assertInArray('encoding', $fixers);
+        $this->assertInArray('elseif', $fixers);
     }
 
     public function testEnableConfig()
     {
-        $config = new Config();
+        $fixers = (new Config())->enable('psr0')->getFixers();
 
-        $config->enable('psr0');
-
-        $this->assertInArray('psr0', $config->getFixers());
+        $this->assertInArray('psr0', $fixers);
     }
 
     /**
@@ -46,9 +42,7 @@ class ConfigTest extends AbstractTestCase
      */
     public function testEnableInvalidConfig()
     {
-        $config = new Config();
-
-        $config->enable('foo');
+        (new Config())->enable('foo');
     }
 
     public function testDisableConfig()
