@@ -15,8 +15,9 @@ use GrahamCampbell\TestBench\AbstractTestCase;
 use StyleCI\Config\Config;
 
 /**
- * This is the array helper test case class.
+ * This is the config test case class.
  *
+ * @author Graham Campbell <graham@mineuk.com>
  * @author Joseph Cohen <joseph.cohen@dinkbit.com>
  */
 class ConfigTest extends AbstractTestCase

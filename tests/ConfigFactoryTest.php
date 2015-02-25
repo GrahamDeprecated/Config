@@ -15,8 +15,9 @@ use GrahamCampbell\TestBench\AbstractTestCase;
 use StyleCI\Config\ConfigFactory;
 
 /**
- * This is the arr test case class.
+ * This is the config factory test case class.
  *
+ * @author Graham Campbell <graham@mineuk.com>
  * @author Joseph Cohen <joseph.cohen@dinkbit.com>
  */
 class ConfigFactoryTest extends AbstractTestCase

@@ -15,7 +15,7 @@ use GrahamCampbell\TestBench\AbstractTestCase;
 use StyleCI\Config\Arr;
 
 /**
- * This is the array helper class test case class.
+ * This is the array helper test case class.
  *
  * @author Joseph Cohen <joseph.cohen@dinkbit.com>
  */
