@@ -11,10 +11,13 @@
 
 namespace StyleCI\Config;
 
+use Symfony\Component\Yaml\Yaml;
+
 /**
  * This is the config factory class.
  *
  * @author Graham Campbell <graham@mineuk.com>
+ * @author Joseph Cohen <joseph.cohen@dinkbit.com>
  */
 class ConfigFactory
 {
@@ -44,6 +47,7 @@ class ConfigFactory
             $config->disable($fixer);
         }
 
+        return $config;
     }
 
     /**
