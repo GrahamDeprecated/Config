@@ -38,6 +38,13 @@ class ConfigTest extends AbstractTestCase
         $this->assertInArray('psr0', $fixers);
     }
 
+    public function testWithNoFixers()
+    {
+        $fixers = (new Config())->preset('none')->getFixers();
+
+        $this->assertSame($fixers, []);
+    }
+
     /**
      * @expectedException \StyleCI\Config\Exceptions\InvalidFixerException
      */

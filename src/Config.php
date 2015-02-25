@@ -298,6 +298,9 @@ class Config
     public function preset($preset)
     {
         switch ($preset) {
+            case 'none':
+                $this->fixers = [];
+                break;
             case 'psr1':
             case 'psr-1':
                 $this->fixers = static::$psr1Fixers;
