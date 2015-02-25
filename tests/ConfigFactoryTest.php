@@ -36,6 +36,8 @@ class ConfigFactoryTest extends AbstractTestCase
         $fixers = (new ConfigFactory())->make(['preset' => 'symfony'])->getFixers();
 
         $this->assertInArray('unused_use', $fixers);
+        $this->assertInArray('phpdoc_no_empty_return', $fixers);
+        $this->assertNotContains('strict', $fixers);
     }
 
     public function testMakeConfigFromYml()
