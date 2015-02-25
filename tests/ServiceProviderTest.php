@@ -22,8 +22,8 @@ class ServiceProviderTest extends AbstractTestCase
 {
     use ServiceProviderTestCaseTrait;
 
-    // public function testAnalyserIsInjectable()
-    // {
-    //     $this->assertIsInjectable('StyleCI\Config\Analyser');
-    // }
+    public function testConfigFactoryIsInjectable()
+    {
+        $this->assertIsInjectable('StyleCI\Config\ConfigFactory');
+    }
 }
