@@ -23,17 +23,13 @@ class Arr
      *
      * @param array  $array
      * @param string $key
-     * @param mixed  $default
+     * @param null   $default
      *
      * @return mixed
      */
-    public static function get(&$array, $key, $default)
+    public static function get(&$array, $key, $default = null)
     {
-        if (in_array($key, $array, true)) {
-            return $array[$key];
-        }
-
-        return $default;
+        return isset($array[$key]) ? $array[$key] : $default;
     }
 
     /**
