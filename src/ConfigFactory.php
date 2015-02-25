@@ -44,6 +44,7 @@ class ConfigFactory
             $config->disable($fixer);
         }
 
+        return $config;
     }
 
     /**
