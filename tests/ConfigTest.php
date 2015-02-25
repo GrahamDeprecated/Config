@@ -15,7 +15,7 @@ use GrahamCampbell\TestBench\AbstractTestCase;
 use StyleCI\Config\Config;
 
 /**
- * This is the arr test case class.
+ * This is the array helper test case class.
  *
  * @author Joseph Cohen <joseph.cohen@dinkbit.com>
  */
@@ -42,7 +42,7 @@ class ConfigTest extends AbstractTestCase
     }
 
     /**
-     * @expectedException StyleCI\Config\Exceptions\InvalidFixerException
+     * @expectedException \StyleCI\Config\Exceptions\InvalidFixerException
      */
     public function testEnableInvalidConfig()
     {
@@ -56,9 +56,9 @@ class ConfigTest extends AbstractTestCase
         $config = new Config();
 
         $config->preset('styleci');
+        $this->assertInArray('psr0', $config->getFixers());
 
         $config->disable('psr0');
-
         $this->assertNotContains('psr0', $config->getFixers());
     }
 }

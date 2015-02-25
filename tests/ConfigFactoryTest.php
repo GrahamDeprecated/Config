@@ -12,7 +12,6 @@
 namespace StyleCI\Tests\Config;
 
 use GrahamCampbell\TestBench\AbstractTestCase;
-
 use StyleCI\Config\ConfigFactory;
 
 /**
@@ -29,6 +28,7 @@ class ConfigFactoryTest extends AbstractTestCase
         $this->assertInArray('psr0', $config->getFixers());
         $this->assertInArray('encoding', $config->getFixers());
         $this->assertInArray('elseif', $config->getFixers());
+        $this->assertNotContains('strict_param', $config->getFixers());
     }
 
     public function testMakeConfigWithOptions()
@@ -40,18 +40,14 @@ class ConfigFactoryTest extends AbstractTestCase
 
     public function testMakeConfigFromYml()
     {
-        $path = __DIR__.'/Fixtures';
-
-        $config = (new ConfigFactory())->makeFromYaml(file_get_contents($path.'/config.yml'));
+        $config = (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/config.yml'));
 
         $this->assertInArray('unused_use', $config->getFixers());
     }
 
     public function testMakeConfigFromYmlWithEnablers()
     {
-        $path = __DIR__.'/Fixtures';
-
-        $config = (new ConfigFactory())->makeFromYaml(file_get_contents($path.'/custom.yml'));
+        $config = (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/custom.yml'));
 
         $this->assertInArray('phpdoc_no_package', $config->getFixers());
         $this->assertNotContains('psr0', $config->getFixers());
