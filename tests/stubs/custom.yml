@@ -3,5 +3,4 @@ preset: psr1
 enabled:
     - phpdoc_no_package
 
-disabled:
-    - psr0
+disabled: psr0
