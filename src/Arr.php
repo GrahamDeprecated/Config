@@ -50,4 +50,21 @@ class Arr
             $array[] = $item;
         }
     }
+
+    /**
+     * Remove an item from an array.
+     *
+     * @param array $array
+     * @param mixed $item
+     *
+     * @return void
+     */
+    public static function remove(&$array, $item)
+    {
+        $index = array_search($item, $array, true);
+
+        if ($index !== false) {
+            unset($array[$index]);
+        }
+    }
 }

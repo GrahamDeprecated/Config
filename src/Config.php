@@ -11,6 +11,9 @@
 
 namespace StyleCI\Config;
 
+use StyleCI\Config\Exceptions\InvalidFixerException;
+use StyleCI\Config\Exceptions\InvalidPresetException;
+
 /**
  * This is the config class.
  *
@@ -19,51 +22,98 @@ namespace StyleCI\Config;
 class Config
 {
     /**
-     * Enable no fixers.
+     * The list of valid fixers.
      *
-     * This matches the equivalent constant in php-cs-fixer 1.x.
-     *
-     * @var int
+     * @var string[]
      */
-    const NONE_LEVEL = 0;
-
-    /**
-     * Enable psr0 fixers.
-     *
-     * This matches the equivalent constant in php-cs-fixer 1.x.
-     *
-     * @var int
-     */
-    const PSR0_LEVEL = 1;
-
-    /**
-     * Enable psr1 fixers.
-     *
-     * This matches the equivalent constant in php-cs-fixer 1.x.
-     *
-     * @var int
-     */
-    const PSR1_LEVEL = 3;
-
-    /**
-     * Enable psr2 fixers.
-     *
-     * This matches the equivalent constant in php-cs-fixer 1.x.
-     *
-     * @var int
-     */
-    const PSR2_LEVEL = 7;
-
-    /**
-     * Enable symfony fixers.
-     *
-     * This matches the equivalent constant in php-cs-fixer 1.x.
-     *
-     * @var int
-     */
-    const SYMFONY_LEVEL = 15;
-
     protected static $validFixers = [
+        'psr0',
+        'encoding',
+        'short_tag',
+        'braces',
+        'elseif',
+        'eof_ending',
+        'function_call_space',
+        'function_declaration',
+        'indentation',
+        'line_after_namespace',
+        'linefeed',
+        'lowercase_constants',
+        'lowercase_keywords',
+        'method_argument_space',
+        'multiple_use',
+        'parenthesis',
+        'php_closing_tag',
+        'single_line_after_imports',
+        'trailing_spaces',
+        'visibility',
+        'concat_without_spaces',
+        'double_arrow_multiline_whitespaces',
+        'duplicate_semicolon',
+        'empty_return',
+        'extra_empty_lines',
+        'include',
+        'join_function',
+        'multiline_array_trailing_comma',
+        'namespace_no_leading_whitespace',
+        'new_with_braces',
+        'no_blank_lines_after_class_opening',
+        'no_empty_lines_after_phpdocs',
+        'object_operator',
+        'operators_spaces',
+        'phpdoc_indent',
+        'phpdoc_no_empty_return',
+        'phpdoc_no_package',
+        'phpdoc_params',
+        'phpdoc_separation',
+        'phpdoc_short_description',
+        'phpdoc_to_comment',
+        'phpdoc_trim',
+        'phpdoc_type_to_var',
+        'phpdoc_var_without_name',
+        'remove_leading_slash_use',
+        'remove_lines_between_uses',
+        'return',
+        'single_array_no_trailing_comma',
+        'single_blank_line_before_namespace',
+        'spaces_before_semicolon',
+        'spaces_cast',
+        'standardize_not_equal',
+        'ternary_spaces',
+        'unused_use',
+        'whitespacy_lines',
+        'align_double_arrow',
+        'align_equals',
+        'concat_with_spaces',
+        'ereg_to_preg',
+        'multiline_spaces_before_semicolon',
+        'no_blank_lines_before_namespace',
+        'ordered_use',
+        'php4_constructor',
+        'phpdoc_order',
+        'phpdoc_var_to_type',
+        'short_array_syntax',
+        'strict',
+        'strict_param',
+    ];
+
+    /**
+     * The list of psr1 fixers.
+     *
+     * @var string[]
+     */
+    protected static $psr1Fixers = [
+        'psr0',
+        'encoding',
+        'short_tag',
+    ];
+
+    /**
+     * The list of psr2 fixers.
+     *
+     * @var string[]
+     */
+    protected static $psr2Fixers = [
         'psr0',
         'encoding',
         'short_tag',
@@ -87,111 +137,220 @@ class Config
     ];
 
     /**
-     * The fixer level.
+     * The list of symfony fixers.
      *
-     * @var int
+     * @var string[]
      */
-    protected $level = static::PSR2_LEVEL;
+    protected static $symfonyFixers = [
+        'psr0',
+        'encoding',
+        'short_tag',
+        'braces',
+        'elseif',
+        'eof_ending',
+        'function_call_space',
+        'function_declaration',
+        'indentation',
+        'line_after_namespace',
+        'linefeed',
+        'lowercase_constants',
+        'lowercase_keywords',
+        'method_argument_space',
+        'multiple_use',
+        'parenthesis',
+        'php_closing_tag',
+        'single_line_after_imports',
+        'trailing_spaces',
+        'visibility',
+        'concat_without_spaces',
+        'double_arrow_multiline_whitespaces',
+        'duplicate_semicolon',
+        'empty_return',
+        'extra_empty_lines',
+        'include',
+        'join_function',
+        'multiline_array_trailing_comma',
+        'namespace_no_leading_whitespace',
+        'new_with_braces',
+        'no_blank_lines_after_class_opening',
+        'no_empty_lines_after_phpdocs',
+        'object_operator',
+        'operators_spaces',
+        'phpdoc_indent',
+        'phpdoc_no_empty_return',
+        'phpdoc_no_package',
+        'phpdoc_params',
+        'phpdoc_separation',
+        'phpdoc_short_description',
+        'phpdoc_to_comment',
+        'phpdoc_trim',
+        'phpdoc_type_to_var',
+        'phpdoc_var_without_name',
+        'remove_leading_slash_use',
+        'remove_lines_between_uses',
+        'return',
+        'single_array_no_trailing_comma',
+        'single_blank_line_before_namespace',
+        'spaces_before_semicolon',
+        'spaces_cast',
+        'standardize_not_equal',
+        'ternary_spaces',
+        'unused_use',
+        'whitespacy_lines',
+    ];
+
+    /**
+     * The list of recommended fixers.
+     *
+     * @var string[]
+     */
+    protected static $recommendedFixers = [
+        'psr0',
+        'encoding',
+        'short_tag',
+        'braces',
+        'elseif',
+        'eof_ending',
+        'function_call_space',
+        'function_declaration',
+        'indentation',
+        'line_after_namespace',
+        'linefeed',
+        'lowercase_constants',
+        'lowercase_keywords',
+        'method_argument_space',
+        'multiple_use',
+        'parenthesis',
+        'php_closing_tag',
+        'single_line_after_imports',
+        'trailing_spaces',
+        'visibility',
+        'concat_without_spaces',
+        'double_arrow_multiline_whitespaces',
+        'duplicate_semicolon',
+        'empty_return',
+        'extra_empty_lines',
+        'include',
+        'join_function',
+        'multiline_array_trailing_comma',
+        'namespace_no_leading_whitespace',
+        'new_with_braces',
+        'no_blank_lines_after_class_opening',
+        'no_empty_lines_after_phpdocs',
+        'object_operator',
+        'operators_spaces',
+        'phpdoc_indent',
+        'phpdoc_no_package',
+        'phpdoc_params',
+        'phpdoc_separation',
+        'phpdoc_short_description',
+        'phpdoc_to_comment',
+        'phpdoc_trim',
+        'phpdoc_type_to_var',
+        'phpdoc_var_without_name',
+        'remove_leading_slash_use',
+        'remove_lines_between_uses',
+        'return',
+        'single_array_no_trailing_comma',
+        'single_blank_line_before_namespace',
+        'spaces_before_semicolon',
+        'spaces_cast',
+        'standardize_not_equal',
+        'ternary_spaces',
+        'unused_use',
+        'whitespacy_lines',
+        'align_double_arrow',
+        'multiline_spaces_before_semicolon',
+        'ordered_use',
+        'phpdoc_order',
+        'short_array_syntax',
+    ];
 
     /**
      * The enabled fixers.
      *
      * @var string[]
      */
-    protected $enabled = [];
+    protected $fixers = [];
 
     /**
-     * The disabled fixers.
+     * Get the enabled fixers.
      *
-     * @var string[]
+     * @return string[]
      */
-    protected $disabled = [];
-
-    public function setLevel($level)
+    public function getFixers()
     {
-        if (is_numeric($level)) {
-            $level = (int) $level;
-        } elseif (!is_string($level)) {
-            throw new InvalidLevelException($level);
-        }
+        return $this->fixers;
+    }
 
-        switch ($level) {
-            case 'none':
-            case 'nothing':
-            case static::NONE_LEVEL:
-                $this->level = static::NONE_LEVEL;
-                break;
-            case 'psr0':
-            case 'psr-0':
-            case static::PSR0_LEVEL:
-                $this->level = static::PSR0_LEVEL;
-                break;
+    /**
+     * Set the enabled fixers to a preset.
+     *
+     * It should be noted that this will totally discard the list of already
+     * enabled fixers, not append to it.
+     *
+     * @param string $preset
+     *
+     * @throws \StyleCI\Config\Exceptions\InvalidPresetException
+     *
+     * @return \StyleCI\Config\Config
+     */
+    public function preset($preset)
+    {
+        switch ($preset) {
             case 'psr1':
             case 'psr-1':
-            case static::PSR1_LEVEL:
-                $this->level = static::PSR1_LEVEL;
+                $this->fixers = static::$psr1Fixers;
                 break;
             case 'psr2':
             case 'psr-2':
-            case static::PSR1_LEVEL:
-                $this->level = static::PSR1_LEVEL;
+                $this->fixers = static::$psr2Fixers;
                 break;
             case 'symfony':
-            case static::SYMFONY_LEVEL:
-                $this->level = static::SYMFONY_LEVEL;
+                $this->fixers = static::$symfonyFixers;
+                break;
+            case 'recommended':
+            case 'styleci':
+                $this->fixers = static::$recommendedFixers;
                 break;
             default:
-                throw new InvalidLevelException($level);
+                throw new InvalidPresetException($preset);
         }
+
+        return $this;
     }
 
-    public function getLevel()
-    {
-        return $this->level;
-    }
-
-    public function setEnabled(array $fixers)
-    {
-        foreach ($fixers as $fixer) {
-            $this->addEnabled($fixer);
-        }
-    }
-
-    public function addEnabled($fixer)
-    {
-        static::validateFixer($fixer);
-
-        Arr::add($this->enabled, $fixer);
-    }
-
-    public function getEnabled()
-    {
-        return $this->enabled;
-    }
-
-    public function setDisabled(array $fixers)
-    {
-        foreach ($fixers as $fixer) {
-            $this->addDisabled($fixer);
-        }
-    }
-
-    public function addDisabled($fixer)
-    {
-        static::validateFixer($fixer);
-
-        Arr::add($this->disabled, $fixer);
-    }
-
-    public function getDisabled()
-    {
-        return $this->disabled;
-    }
-
-    protected static function validateFixer($fixer)
+    /**
+     * Enable a fixer, if not already enabled.
+     *
+     * @param string $fixer
+     *
+     * @throws \StyleCI\Config\Exceptions\InvalidFixerException
+     *
+     * @return \StyleCI\Config\Config
+     */
+    public function enable($fixer)
     {
         if (!is_string($fixer) || !in_array($fixer, static::$validFixers, true)) {
             throw new InvalidFixerException($fixer);
         }
+
+        Arr::add($this->fixers, $fixer);
+
+        return $this;
+    }
+
+    /**
+     * Disable a fixer, if already enabled.
+     *
+     * @param string $fixer
+     *
+     * @return \StyleCI\Config\Config
+     */
+    public function disable($fixer)
+    {
+        Arr::remove($this->fixers, $fixer);
+
+        return $this;
     }
 }

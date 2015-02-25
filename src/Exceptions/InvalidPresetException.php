@@ -14,11 +14,11 @@ namespace StyleCI\Config\Exceptions;
 use InvalidArgumentException;
 
 /**
- * This is the invalid level exception class.
+ * This is the invalid preset exception class.
  *
  * @author Graham Campbell <graham@mineuk.com>
  */
-class InvalidLevelException extends InvalidArgumentException implements ConfigExceptionInterface
+class InvalidPresetException extends InvalidArgumentException implements ConfigExceptionInterface
 {
     //
 }
