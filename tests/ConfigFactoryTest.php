@@ -55,4 +55,12 @@ class ConfigFactoryTest extends AbstractTestCase
         $this->assertInArray('phpdoc_no_package', $fixers);
         $this->assertNotContains('psr0', $fixers);
     }
+
+    /**
+     * @expectedException \StyleCI\Config\Exceptions\InvalidYamlException
+     */
+    public function testMakeInvalidConfig()
+    {
+        (new ConfigFactory())->makeFromYaml('foo: !!php/object:O:30:"foo";}');
+    }
 }

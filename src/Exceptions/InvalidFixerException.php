@@ -20,5 +20,38 @@ use InvalidArgumentException;
  */
 class InvalidFixerException extends InvalidArgumentException implements ConfigExceptionInterface
 {
-    //
+    /**
+     * The invalid fixer.
+     *
+     * @var mixed
+     */
+    protected $fixer;
+
+    /**
+     * Create a new invalid fixer exception instance.
+     *
+     * @param mixed $fixer
+     *
+     * @return void
+     */
+    public function __construct($fixer)
+    {
+        $this->fixer = $fixer;
+
+        if (is_string($fixer)) {
+            parent::__construct("The provided fixer '$fixer' was not valid.");
+        } else {
+            parent::__construct("The provided fixer was not valid.");
+        }
+    }
+
+    /**
+     * Get the invalid fixer.
+     *
+     * @return mixed
+     */
+    public function getFixer()
+    {
+        return $this->fixer;
+    }
 }

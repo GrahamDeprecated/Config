@@ -11,6 +11,8 @@
 
 namespace StyleCI\Config;
 
+use Exception;
+use StyleCI\Config\Exceptions\InvalidYamlException;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -28,7 +30,6 @@ class ConfigFactory
      * @param array $input
      *
      * @throws \StyleCI\Config\Exceptions\ConfigExceptionInterface
-     * @throws \Symfony\Component\Yaml\Exception\ExceptionInterface
      *
      * @return \StyleCI\Config\Config
      */
@@ -55,13 +56,16 @@ class ConfigFactory
      * Note that fairly strict validation happens during this process.
      *
      * @throws \StyleCI\Config\Exceptions\ConfigExceptionInterface
-     * @throws \Symfony\Component\Yaml\Exception\ExceptionInterface
      *
      * @return \StyleCI\Config\Config
      */
     public function makeFromYaml($yaml)
     {
-        $parsed = Yaml::parse($yaml);
+        try {
+            $parsed = Yaml::parse($yaml, true);
+        } catch (Exception $e) {
+            throw new InvalidYamlException($e);
+        }
 
         return $this->make($parsed);
     }
