@@ -11,6 +11,7 @@
 
 namespace StyleCI\Tests\Config;
 
+use Exception;
 use GrahamCampbell\TestBench\AbstractTestCase;
 use StyleCI\Config\Config;
 
@@ -31,11 +32,20 @@ class ConfigTest extends AbstractTestCase
         $this->assertInArray('elseif', $fixers);
     }
 
+    public function testPresetAgain()
+    {
+        $fixers = (new Config())->preset('psr2')->getFixers();
+
+        $this->assertInArray('psr0', $fixers);
+        $this->assertInArray('visibility', $fixers);
+    }
+
     public function testEnableConfig()
     {
         $fixers = (new Config())->enable('psr0')->getFixers();
 
         $this->assertInArray('psr0', $fixers);
+        $this->assertNotContains('visibility', $fixers);
     }
 
     public function testWithNoFixers()
@@ -47,10 +57,58 @@ class ConfigTest extends AbstractTestCase
 
     /**
      * @expectedException \StyleCI\Config\Exceptions\InvalidFixerException
+     * @expectedExceptionMessage The provided fixer 'foo' was not valid.
      */
-    public function testEnableInvalidConfig()
+    public function testEnableInvalidFixer()
     {
-        (new Config())->enable('foo');
+        try {
+            (new Config())->enable('foo');
+        } catch (Exception $e) {
+            $this->assertSame('foo', $e->getFixer());
+            throw $e;
+        }
+    }
+
+    /**
+     * @expectedException \StyleCI\Config\Exceptions\InvalidFixerException
+     * @expectedExceptionMessage The provided fixer was not valid.
+     */
+    public function testEnableInvalidFixerAgain()
+    {
+        try {
+            (new Config())->enable([]);
+        } catch (Exception $e) {
+            $this->assertSame([], $e->getFixer());
+            throw $e;
+        }
+    }
+
+    /**
+     * @expectedException \StyleCI\Config\Exceptions\InvalidPresetException
+     * @expectedExceptionMessage The provided preset 'bar' was not valid.
+     */
+    public function testEnableInvalidPreset()
+    {
+        try {
+            (new Config())->preset('bar');
+        } catch (Exception $e) {
+            $this->assertSame('bar', $e->getPreset());
+            throw $e;
+        }
+    }
+
+    /**
+     * @expectedException \StyleCI\Config\Exceptions\InvalidPresetException
+     * @expectedExceptionMessage The provided preset was not valid.
+     */
+    public function testEnableInvalidPresetAgain()
+    {
+        try {
+            (new Config())->preset([]);
+        } catch (Exception $e) {
+            $this->assertSame([], $e->getPreset());
+            throw $e;
+        }
     }
 
     public function testDisableConfig()

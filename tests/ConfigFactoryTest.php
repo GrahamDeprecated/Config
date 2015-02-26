@@ -58,6 +58,7 @@ class ConfigFactoryTest extends AbstractTestCase
 
     /**
      * @expectedException \StyleCI\Config\Exceptions\InvalidYamlException
+     * @expectedExceptionMessage Object support when parsing a YAML file has been disabled
      */
     public function testMakeInvalidConfig()
     {
