@@ -54,7 +54,7 @@ class Config
         'extra_empty_lines',
         'include',
         'join_function',
-        'list_commas'
+        'list_commas',
         'multiline_array_trailing_comma',
         'namespace_no_leading_whitespace',
         'new_with_braces',
