@@ -169,6 +169,7 @@ class Config
         'single_line_after_imports',
         'trailing_spaces',
         'visibility',
+        'blankline_after_open_tag',
         'concat_without_spaces',
         'double_arrow_multiline_whitespaces',
         'duplicate_semicolon',
@@ -205,6 +206,7 @@ class Config
         'spaces_cast',
         'standardize_not_equal',
         'ternary_spaces',
+        'trim_array_spaces',
         'unused_use',
         'whitespacy_lines',
     ];
