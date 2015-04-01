@@ -36,9 +36,9 @@ class ConfigFactoryTest extends AbstractTestCase
     {
         $config = (new ConfigFactory())->make(['preset' => 'symfony']);
 
-        $this->assertInArray('unused_use', $fixers->getFixers());
-        $this->assertInArray('phpdoc_no_empty_return', $fixers->getFixers());
-        $this->assertNotContains('strict', $fixers->getFixers());
+        $this->assertInArray('unused_use', $config->getFixers());
+        $this->assertInArray('phpdoc_no_empty_return', $config->getFixers());
+        $this->assertNotContains('strict', $config->getFixers());
         $this->assertSame(['php'], $config->getExtensions());
     }
 
