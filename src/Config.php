@@ -475,6 +475,6 @@ class Config
      */
     public function getExtensions()
     {
-        return $this->fixers;
+        return $this->extensions;
     }
 }
