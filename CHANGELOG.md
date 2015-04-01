@@ -7,6 +7,7 @@ CHANGE LOG
 * Added laravel preset
 * Added php-cs-fixer 1.6 fixers
 * Tweaked the recommended preset
+* Support setting the file extensions
 
 
 ## V0.1 Alpha (26/02/2015)
