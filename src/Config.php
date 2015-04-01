@@ -477,5 +477,4 @@ class Config
     {
         return $this->fixers;
     }
-
 }
