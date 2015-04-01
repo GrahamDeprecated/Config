@@ -34,11 +34,12 @@ class ConfigFactoryTest extends AbstractTestCase
 
     public function testMakeConfigWithOptions()
     {
-        $fixers = (new ConfigFactory())->make(['preset' => 'symfony'])->getFixers();
+        $config = (new ConfigFactory())->make(['preset' => 'symfony']);
 
-        $this->assertInArray('unused_use', $fixers);
-        $this->assertInArray('phpdoc_no_empty_return', $fixers);
-        $this->assertNotContains('strict', $fixers);
+        $this->assertInArray('unused_use', $fixers->getFixers());
+        $this->assertInArray('phpdoc_no_empty_return', $fixers->getFixers());
+        $this->assertNotContains('strict', $fixers->getFixers());
+        $this->assertSame(['php'], $config->getExtensions());
     }
 
     public function testMakeConfigFromYml()
@@ -50,10 +51,11 @@ class ConfigFactoryTest extends AbstractTestCase
 
     public function testMakeConfigFromYmlWithEnablers()
     {
-        $fixers = (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/custom.yml'))->getFixers();
+        $config = (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/custom.yml'));
 
-        $this->assertInArray('phpdoc_no_package', $fixers);
-        $this->assertNotContains('psr0', $fixers);
+        $this->assertInArray('phpdoc_no_package', $config->getFixers());
+        $this->assertNotContains('psr0', $config->getFixers());
+        $this->assertSame(['php', 'php.stub'], $config->getExtensions());
     }
 
     /**

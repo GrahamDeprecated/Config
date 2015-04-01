@@ -357,14 +357,11 @@ class Config
     protected $fixers = [];
 
     /**
-     * Get the enabled fixers.
+     * The enabled file extensions.
      *
-     * @return string[]
+     * @var string[]
      */
-    public function getFixers()
-    {
-        return $this->fixers;
-    }
+    protected $extensions = [];
 
     /**
      * Set the enabled fixers to a preset.
@@ -442,4 +439,39 @@ class Config
 
         return $this;
     }
+
+    /**
+     * Get the enabled fixers.
+     *
+     * @return string[]
+     */
+    public function getFixers()
+    {
+        return $this->fixers;
+    }
+
+    /**
+     * Set the enabled file extensions.
+     *
+     * @param string[] $extensions
+     *
+     * @return \StyleCI\Config\Config
+     */
+    public function extensions(array $extensions)
+    {
+        $this->extensions = $extensions;
+
+        return $this;
+    }
+
+    /**
+     * Get the enabled file extensions.
+     *
+     * @return string[]
+     */
+    public function getExtensions()
+    {
+        return $this->fixers;
+    }
+
 }

@@ -47,6 +47,8 @@ class ConfigFactory
             $config->disable($fixer);
         }
 
+        $config->extentions((array) Arr::get($input, 'extentions', ['php']));
+
         return $config;
     }
 
