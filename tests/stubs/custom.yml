@@ -8,3 +8,7 @@ disabled: psr0
 extensions:
   - php
   - php.stub
+
+excluded:
+  - foo
+  - bar

@@ -40,6 +40,7 @@ class ConfigFactoryTest extends AbstractTestCase
         $this->assertInArray('phpdoc_no_empty_return', $config->getFixers());
         $this->assertNotContains('strict', $config->getFixers());
         $this->assertSame(['php'], $config->getExtensions());
+        $this->assertSame(['storage'], $config->getExcluded());
     }
 
     public function testMakeConfigFromYml()
@@ -56,6 +57,7 @@ class ConfigFactoryTest extends AbstractTestCase
         $this->assertInArray('phpdoc_no_package', $config->getFixers());
         $this->assertNotContains('psr0', $config->getFixers());
         $this->assertSame(['php', 'php.stub'], $config->getExtensions());
+        $this->assertSame(['foo', 'bar'], $config->getExcluded());
     }
 
     /**

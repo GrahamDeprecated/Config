@@ -364,6 +364,13 @@ class Config
     protected $extensions = [];
 
     /**
+     * The excluded paths.
+     *
+     * @var string[]
+     */
+    protected $excluded = [];
+
+    /**
      * Set the enabled fixers to a preset.
      *
      * It should be noted that this will totally discard the list of already
@@ -472,5 +479,29 @@ class Config
     public function getExtensions()
     {
         return $this->extensions;
+    }
+
+    /**
+     * Set the excluded paths.
+     *
+     * @param string[] $excluded
+     *
+     * @return \StyleCI\Config\Config
+     */
+    public function excluded(array $excluded)
+    {
+        $this->excluded = $excluded;
+
+        return $this;
+    }
+
+    /**
+     * Get the excluded paths.
+     *
+     * @return string[]
+     */
+    public function getExcluded()
+    {
+        return $this->excluded;
     }
 }

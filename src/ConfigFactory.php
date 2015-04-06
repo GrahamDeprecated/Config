@@ -49,6 +49,8 @@ class ConfigFactory
 
         $config->extensions((array) Arr::get($input, 'extensions', ['php']));
 
+        $config->excluded((array) Arr::get($input, 'excluded', ['storage']));
+
         return $config;
     }
 
