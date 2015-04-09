@@ -2,7 +2,7 @@ CHANGE LOG
 ==========
 
 
-## V0.2 Alpha (Upcoming)
+## V0.2 Alpha (09/04/2015)
 
 * Added laravel preset
 * Added php-cs-fixer 1.6 fixers
