@@ -41,7 +41,7 @@ class InvalidPresetException extends InvalidArgumentException implements ConfigE
         if (is_string($preset)) {
             parent::__construct("The provided preset '$preset' was not valid.");
         } else {
-            parent::__construct("The provided preset was not valid.");
+            parent::__construct('The provided preset was not valid.');
         }
     }
 
