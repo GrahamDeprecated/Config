@@ -102,6 +102,7 @@ class Config
         'php4_constructor',
         'phpdoc_order',
         'phpdoc_var_to_type',
+        'pre_increment',
         'short_array_syntax',
         'strict',
         'strict_param',
