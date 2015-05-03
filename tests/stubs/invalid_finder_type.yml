@@ -1,0 +1,12 @@
+preset: psr1
+
+enabled:
+  - phpdoc_no_package
+
+disabled: psr0
+
+finder:
+    in:
+        - src/
+    filter:
+        - Kernel
