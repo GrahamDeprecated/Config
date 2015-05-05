@@ -215,6 +215,8 @@ class Config
         'standardize_not_equal',
         'ternary_spaces',
         'trim_array_spaces',
+        'unalign_double_arrow',
+        'unalign_equals',
         'unary_operators_spaces',
         'unused_use',
         'whitespacy_lines',
