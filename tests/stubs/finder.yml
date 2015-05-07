@@ -1,0 +1,20 @@
+preset: psr1
+
+enabled:
+  - phpdoc_no_package
+
+disabled: psr0
+
+finder:
+    in:
+        - src/
+    name:
+        - '*.php'
+        - '*.php.stub'
+    exclude:
+      - foo
+      - bar
+    not_contains:
+        - Kernel
+    not-path:
+        - 'Fixtures/*'

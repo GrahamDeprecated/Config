@@ -18,6 +18,7 @@ use StyleCI\Config\Exceptions\InvalidPresetException;
  * This is the config class.
  *
  * @author Graham Campbell <graham@mineuk.com>
+ * @author Sebastiaan Stok <s.stok@rollerscapes.net>
  */
 class Config
 {
@@ -390,6 +391,13 @@ class Config
     protected $excluded = [];
 
     /**
+     * The configuration of the Finder.
+     *
+     * @var \StyleCI\Config\FinderConfig|null
+     */
+    protected $finderConfig;
+
+    /**
      * Set the enabled fixers to a preset.
      *
      * It should be noted that this will totally discard the list of already
@@ -522,5 +530,29 @@ class Config
     public function getExcluded()
     {
         return $this->excluded;
+    }
+
+    /**
+     * Set the Finder configuration.
+     *
+     * @param \StyleCI\Config\FinderConfig $config
+     *
+     * @return \StyleCI\Config\Config
+     */
+    public function finderConfig(FinderConfig $config)
+    {
+        $this->finderConfig = $config;
+
+        return $this;
+    }
+
+    /**
+     * Get Finder configuration.
+     *
+     * @return \StyleCI\Config\FinderConfig|null
+     */
+    public function getFinderConfig()
+    {
+        return $this->finderConfig;
     }
 }

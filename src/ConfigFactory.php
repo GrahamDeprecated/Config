@@ -12,6 +12,7 @@
 namespace StyleCI\Config;
 
 use Exception;
+use StyleCI\Config\Exceptions\InvalidFinderTypeException;
 use StyleCI\Config\Exceptions\InvalidYamlException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -22,6 +23,19 @@ use Symfony\Component\Yaml\Yaml;
  */
 class ConfigFactory
 {
+    protected static $finderMethods = [
+        'in',
+        'exclude',
+        'name',
+        'notName',
+        'contains',
+        'notContains',
+        'path',
+        'notPath',
+        'depth',
+        'date',
+    ];
+
     /**
      * Make a new config object.
      *
@@ -47,11 +61,41 @@ class ConfigFactory
             $config->disable($fixer);
         }
 
-        $config->extensions((array) Arr::get($input, 'extensions', ['php']));
+        if (isset($input['finder'])) {
+            $config->finderConfig($this->makeFinderConfig(Arr::get($input, 'finder', [])));
+        } else {
+            $config->extensions((array) Arr::get($input, 'extensions', ['php']));
 
-        $config->excluded((array) Arr::get($input, 'excluded', ['storage']));
+            $config->excluded((array) Arr::get($input, 'excluded', ['storage']));
+        }
 
         return $config;
+    }
+
+    /**
+     * Make a new finder config object.
+     *
+     * @param array $input
+     *
+     * @throws \StyleCI\Config\Exceptions\InvalidFinderTypeException
+     *
+     * @return \StyleCI\Config\FinderConfig
+     */
+    public function makeFinderConfig(array $input = [])
+    {
+        $finderConfig = new FinderConfig();
+
+        foreach ($input as $name => $config) {
+            $finderMethod = str_replace(' ', '', lcfirst(ucwords(strtr($name, '_- ', '  '))));
+
+            if (!in_array($finderMethod, self::$finderMethods, true)) {
+                throw new InvalidFinderTypeException($name);
+            }
+
+            $finderConfig->$finderMethod($config);
+        }
+
+        return $finderConfig;
     }
 
     /**
