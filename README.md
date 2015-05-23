@@ -1,7 +1,7 @@
 # StyleCI Config ![Analytics](https://ga-beacon.appspot.com/UA-60053271-6/StyleCI/Config?pixel)
 
 
-StyleCI Config was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a code style configuration manager. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/StyleCI/Config/releases), [license](LICENSE), [api docs](http://docs.grahamjcampbell.co.uk), and [contribution guidelines](CONTRIBUTING.md).
+StyleCI Config was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is a code style configuration manager. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/StyleCI/Config/releases), [license](LICENSE), [api docs](http://docs.gjcampbell.co.uk), and [contribution guidelines](CONTRIBUTING.md).
 
 ![StyleCI Config](https://cloud.githubusercontent.com/assets/2829600/6310846/0cec1374-b953-11e4-9153-aa75e1da069e.png)
 
@@ -33,7 +33,7 @@ If you're using Laravel 5, then you can register our service provider. Open up `
 
 ## Usage
 
-StyleCI Config is designed to manage user provided config and protect against bad input. There is currently no real documentation for this package, but feel free to check out the [API Documentation](http://docs.grahamjcampbell.co.uk) for StyleCI Config.
+StyleCI Config is designed to manage user provided config and protect against bad input. There is currently no real documentation for this package, but feel free to check out the [API Documentation](http://docs.gjcampbell.co.uk) for StyleCI Config.
 
 
 ## License
