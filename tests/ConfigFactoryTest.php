@@ -13,6 +13,7 @@ namespace StyleCI\Tests\Config;
 
 use GrahamCampbell\TestBench\AbstractTestCase;
 use StyleCI\Config\ConfigFactory;
+use StyleCI\Config\FinderConfig;
 
 /**
  * This is the config factory test case class.
@@ -58,6 +59,28 @@ class ConfigFactoryTest extends AbstractTestCase
         $this->assertNotContains('psr0', $config->getFixers());
         $this->assertSame(['php', 'php.stub'], $config->getExtensions());
         $this->assertSame(['foo', 'bar'], $config->getExcluded());
+    }
+
+    public function testMakeConfigFromYmlWithFinder()
+    {
+        $config = (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/finder.yml'));
+
+        $this->assertInstanceOf(FinderConfig::class, $config->getFinderConfig());
+
+        $this->assertEquals(['src'], $config->getFinderConfig()->getIn());
+        $this->assertEquals(['*.php', '*.php.stub'], $config->getFinderConfig()->getName());
+        $this->assertEquals(['foo', 'bar'], $config->getFinderConfig()->getExclude());
+        $this->assertEquals(['Kernel'], $config->getFinderConfig()->getNotContains());
+        $this->assertEquals(['Fixtures/*'], $config->getFinderConfig()->getNotPath());
+    }
+
+    /**
+     * @expectedException \StyleCI\Config\Exceptions\InvalidFinderTypeException
+     * @expectedExceptionMessage The provided finder type 'filter' was not valid.
+     */
+    public function testMakeConfigFromYmlWithInvalidFinderType()
+    {
+        (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/invalid_finder_type.yml'));
     }
 
     /**

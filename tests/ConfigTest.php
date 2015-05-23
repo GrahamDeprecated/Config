@@ -14,6 +14,7 @@ namespace StyleCI\Tests\Config;
 use Exception;
 use GrahamCampbell\TestBench\AbstractTestCase;
 use StyleCI\Config\Config;
+use StyleCI\Config\FinderConfig;
 
 /**
  * This is the config test case class.
@@ -120,5 +121,18 @@ class ConfigTest extends AbstractTestCase
 
         $config->disable('psr0');
         $this->assertNotContains('psr0', $config->getFixers());
+    }
+
+    public function testFinderConfig()
+    {
+        $finderConfig = new FinderConfig();
+
+        $config = new Config();
+
+        $this->assertNull($config->getFinderConfig());
+
+        $config->finderConfig($finderConfig);
+
+        $this->assertSame($finderConfig, $config->getFinderConfig());
     }
 }
