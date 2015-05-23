@@ -3,7 +3,7 @@
 /*
  * This file is part of StyleCI Config.
  *
- * (c) Graham Campbell <graham@mineuk.com>
+ * (c) Graham Campbell <graham@cachethq.io>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -18,7 +18,7 @@ use StyleCI\Config\Config;
 /**
  * This is the config test case class.
  *
- * @author Graham Campbell <graham@mineuk.com>
+ * @author Graham Campbell <graham@cachethq.io>
  * @author Joseph Cohen <joseph.cohen@dinkbit.com>
  */
 class ConfigTest extends AbstractTestCase
