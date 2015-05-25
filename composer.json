@@ -18,11 +18,11 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
+        "php": ">=5.5.9",
         "symfony/yaml": "~2.3"
     },
     "require-dev": {
-        "graham-campbell/testbench": "~2.0"
+        "graham-campbell/testbench": "~2.1"
     },
     "suggest": {
         "illuminate/support": "Enables Laravel support (~5.0)."
