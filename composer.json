@@ -5,8 +5,16 @@
     "license": "MIT",
     "authors": [
         {
+            "name": "James Brooks",
+            "email": "james@cachethq.io"
+        },
+        {
             "name": "Graham Campbell",
             "email": "graham@cachethq.io"
+        },
+        {
+            "name": "Joseph Cohen",
+            "email": "joe@cachethq.io"
         }
     ],
     "require": {
