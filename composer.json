@@ -25,7 +25,7 @@
         "graham-campbell/testbench": "~2.1"
     },
     "suggest": {
-        "illuminate/support": "Enables Laravel support (~5.0)."
+        "illuminate/support": "Enables Laravel support."
     },
     "autoload": {
         "psr-4": {
