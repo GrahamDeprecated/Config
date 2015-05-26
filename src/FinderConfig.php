@@ -126,7 +126,7 @@ class FinderConfig
                     throw new InvalidFinderDirectoryException($directory);
                 }
 
-                $directory = trim($directory, '/');
+                $directory = trim(str_replace('\\', '/', $directory), '/');
 
                 // Detect for directory path traversal.
                 if ($directory === '..' || false !== strpos($directory, '../') || false !== strpos($directory, '/..')) {
