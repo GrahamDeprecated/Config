@@ -107,6 +107,7 @@ class Config
         'phpdoc_order',
         'phpdoc_var_to_type',
         'short_array_syntax',
+        'short_echo_tag',
         'strict',
         'strict_param',
     ];
@@ -292,6 +293,7 @@ class Config
         'whitespacy_lines',
         'multiline_spaces_before_semicolon',
         'short_array_syntax',
+        'short_echo_tag',
     ];
 
     /**
