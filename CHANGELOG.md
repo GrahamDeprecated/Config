@@ -2,9 +2,10 @@ CHANGE LOG
 ==========
 
 
-## V0.3 Alpha (Upcoming)
+## V0.3 Alpha (30/05/2015)
 
 * Added php-cs-fixer 1.9 fixers
+* Added finder configuration
 
 
 ## V0.2 Alpha (09/04/2015)
