@@ -269,7 +269,7 @@ class FinderConfig
      */
     public function depth($depth)
     {
-        $this->depth = $depth;
+        $this->depth = (array) $depth;
 
         return $this;
     }
