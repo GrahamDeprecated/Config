@@ -246,7 +246,6 @@ class Config
         'method_argument_space',
         'multiple_use',
         'parenthesis',
-        'php_closing_tag',
         'single_line_after_imports',
         'trailing_spaces',
         'visibility',
