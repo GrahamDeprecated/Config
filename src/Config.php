@@ -231,7 +231,6 @@ class Config
      * @var string[]
      */
     protected static $laravelFixers = [
-        'psr0',
         'encoding',
         'short_tag',
         'braces',
