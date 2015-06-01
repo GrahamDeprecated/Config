@@ -96,7 +96,7 @@ class FinderConfig
      *
      * @var string[]
      */
-    protected $depth;
+    protected $depth = [];
 
     /**
      * The tests for file dates (last modified).
