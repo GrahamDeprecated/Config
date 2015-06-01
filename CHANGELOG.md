@@ -2,6 +2,12 @@ CHANGE LOG
 ==========
 
 
+## V0.3.1 Alpha (01/06/2015)
+
+* Fixed depth config
+* Tweaked laravel preset
+
+
 ## V0.3 Alpha (30/05/2015)
 
 * Added php-cs-fixer 1.9 fixers
