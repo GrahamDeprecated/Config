@@ -23,6 +23,7 @@ use StyleCI\Config\Exceptions\InvalidFinderDirectoryException;
  * of the related type. So calling in() multiple times will overwrite
  * the previously set values of "in".
  *
+ * @author Graham Campbell <graham@cachethq.io>
  * @author Sebastiaan Stok <s.stok@rollerscapes.net>
  */
 class FinderConfig
