@@ -287,7 +287,6 @@ class Config
         'trim_array_spaces',
         'unalign_equals',
         'unary_operators_spaces',
-        'unused_use',
         'whitespacy_lines',
         'multiline_spaces_before_semicolon',
         'short_array_syntax',
