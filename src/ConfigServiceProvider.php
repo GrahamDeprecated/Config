@@ -16,7 +16,7 @@ use Illuminate\Support\ServiceProvider;
 /**
  * This is the config service provider class.
  *
- * @author Graham Campbell <graham@cachethq.io>
+ * @author Graham Campbell <graham@alt-three.com>
  */
 class ConfigServiceProvider extends ServiceProvider
 {

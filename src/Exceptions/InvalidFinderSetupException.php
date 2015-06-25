@@ -17,7 +17,7 @@ use RuntimeException;
 /**
  * This is the invalid finder setup exception class.
  *
- * @author Graham Campbell <graham@cachethq.io>
+ * @author Graham Campbell <graham@alt-three.com>
  */
 class InvalidFinderSetupException extends RuntimeException implements ConfigExceptionInterface
 {

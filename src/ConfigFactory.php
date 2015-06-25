@@ -19,7 +19,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * This is the config factory class.
  *
- * @author Graham Campbell <graham@cachethq.io>
+ * @author Graham Campbell <graham@alt-three.com>
  */
 class ConfigFactory
 {

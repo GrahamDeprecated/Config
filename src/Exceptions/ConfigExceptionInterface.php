@@ -14,7 +14,7 @@ namespace StyleCI\Config\Exceptions;
 /**
  * This is the config exception interface.
  *
- * @author Graham Campbell <graham@cachethq.io>
+ * @author Graham Campbell <graham@alt-three.com>
  */
 interface ConfigExceptionInterface
 {

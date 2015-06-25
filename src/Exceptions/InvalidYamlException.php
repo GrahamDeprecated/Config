@@ -17,7 +17,7 @@ use RuntimeException;
 /**
  * This is the invalid yaml exception class.
  *
- * @author Graham Campbell <graham@cachethq.io>
+ * @author Graham Campbell <graham@alt-three.com>
  */
 class InvalidYamlException extends RuntimeException implements ConfigExceptionInterface
 {

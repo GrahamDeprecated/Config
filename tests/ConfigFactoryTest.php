@@ -18,7 +18,7 @@ use StyleCI\Config\FinderConfig;
 /**
  * This is the config factory test case class.
  *
- * @author Graham Campbell <graham@cachethq.io>
+ * @author Graham Campbell <graham@alt-three.com>
  * @author Joseph Cohen <joseph.cohen@dinkbit.com>
  */
 class ConfigFactoryTest extends AbstractTestCase

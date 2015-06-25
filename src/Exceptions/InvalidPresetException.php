@@ -16,7 +16,7 @@ use InvalidArgumentException;
 /**
  * This is the invalid preset exception class.
  *
- * @author Graham Campbell <graham@cachethq.io>
+ * @author Graham Campbell <graham@alt-three.com>
  */
 class InvalidPresetException extends InvalidArgumentException implements ConfigExceptionInterface
 {

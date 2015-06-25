@@ -16,7 +16,7 @@ use InvalidArgumentException;
 /**
  * This is the invalid fixer exception class.
  *
- * @author Graham Campbell <graham@cachethq.io>
+ * @author Graham Campbell <graham@alt-three.com>
  */
 class InvalidFixerException extends InvalidArgumentException implements ConfigExceptionInterface
 {

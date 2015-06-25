@@ -17,7 +17,7 @@ use StyleCI\Config\Exceptions\InvalidPresetException;
 /**
  * This is the config class.
  *
- * @author Graham Campbell <graham@cachethq.io>
+ * @author Graham Campbell <graham@alt-three.com>
  * @author Sebastiaan Stok <s.stok@rollerscapes.net>
  */
 class Config
