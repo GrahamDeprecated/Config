@@ -22,7 +22,8 @@
         "symfony/yaml": "~2.3"
     },
     "require-dev": {
-        "graham-campbell/testbench": "~2.1"
+        "graham-campbell/testbench": "~3.0",
+        "phpunit/phpunit": "^4.7.6"
     },
     "suggest": {
         "illuminate/support": "Enables Laravel support."

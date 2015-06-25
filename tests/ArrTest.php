@@ -11,15 +11,15 @@
 
 namespace StyleCI\Tests\Config;
 
-use GrahamCampbell\TestBench\AbstractTestCase;
+use GrahamCampbell\TestBench\AbstractTestCase as AbstractTestBenchTestCase;
 use StyleCI\Config\Arr;
 
 /**
  * This is the array helper test case class.
  *
- * @author Joseph Cohen <joseph.cohen@dinkbit.com>
+ * @author Joseph Cohen <joe@alt-three.com>
  */
-class ArrTest extends AbstractTestCase
+class ArrTest extends AbstractTestBenchTestCase
 {
     public function testArrayGet()
     {

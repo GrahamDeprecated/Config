@@ -11,6 +11,7 @@
 
 namespace StyleCI\Tests\Config;
 
+use GrahamCampbell\TestBench\AbstractTestCase as AbstractTestBenchTestCase;
 use stdClass;
 use StyleCI\Config\Exceptions\InvalidFinderDirectoryException;
 use StyleCI\Config\FinderConfig;
@@ -20,7 +21,7 @@ use StyleCI\Config\FinderConfig;
  *
  * @author Sebastiaan Stok <s.stok@rollerscapes.net>
  */
-class FinderConfigTest extends AbstractTestCase
+class FinderConfigTest extends AbstractTestBenchTestCase
 {
     public function testIn()
     {

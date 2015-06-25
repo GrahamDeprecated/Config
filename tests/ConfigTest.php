@@ -12,7 +12,7 @@
 namespace StyleCI\Tests\Config;
 
 use Exception;
-use GrahamCampbell\TestBench\AbstractTestCase;
+use GrahamCampbell\TestBench\AbstractTestCase as AbstractTestBenchTestCase;
 use StyleCI\Config\Config;
 use StyleCI\Config\FinderConfig;
 
@@ -20,9 +20,9 @@ use StyleCI\Config\FinderConfig;
  * This is the config test case class.
  *
  * @author Graham Campbell <graham@alt-three.com>
- * @author Joseph Cohen <joseph.cohen@dinkbit.com>
+ * @author Joseph Cohen <joe@alt-three.com>
  */
-class ConfigTest extends AbstractTestCase
+class ConfigTest extends AbstractTestBenchTestCase
 {
     public function testPreset()
     {

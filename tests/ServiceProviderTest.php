@@ -11,7 +11,8 @@
 
 namespace StyleCI\Tests\Config;
 
-use GrahamCampbell\TestBench\Traits\ServiceProviderTestCaseTrait;
+use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
+use StyleCI\Config\ConfigFactory;
 
 /**
  * This is the service provider test class.
@@ -20,10 +21,10 @@ use GrahamCampbell\TestBench\Traits\ServiceProviderTestCaseTrait;
  */
 class ServiceProviderTest extends AbstractTestCase
 {
-    use ServiceProviderTestCaseTrait;
+    use ServiceProviderTrait;
 
     public function testConfigFactoryIsInjectable()
     {
-        $this->assertIsInjectable('StyleCI\Config\ConfigFactory');
+        $this->assertIsInjectable(ConfigFactory::class);
     }
 }

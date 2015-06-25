@@ -15,7 +15,7 @@ namespace StyleCI\Config;
  * This is the array helper class.
  *
  * @author Graham Campbell <graham@alt-three.com>
- * @author Joseph Cohen <joseph.cohen@dinkbit.com>
+ * @author Joseph Cohen <joe@alt-three.com>
  */
 class Arr
 {

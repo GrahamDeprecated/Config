@@ -11,7 +11,7 @@
 
 namespace StyleCI\Tests\Config;
 
-use GrahamCampbell\TestBench\AbstractTestCase;
+use GrahamCampbell\TestBench\AbstractTestCase as AbstractTestBenchTestCase;
 use StyleCI\Config\ConfigFactory;
 use StyleCI\Config\FinderConfig;
 
@@ -19,9 +19,9 @@ use StyleCI\Config\FinderConfig;
  * This is the config factory test case class.
  *
  * @author Graham Campbell <graham@alt-three.com>
- * @author Joseph Cohen <joseph.cohen@dinkbit.com>
+ * @author Joseph Cohen <joe@alt-three.com>
  */
-class ConfigFactoryTest extends AbstractTestCase
+class ConfigFactoryTest extends AbstractTestBenchTestCase
 {
     public function testMakeConfig()
     {

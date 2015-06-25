@@ -12,6 +12,7 @@
 namespace StyleCI\Tests\Config;
 
 use GrahamCampbell\TestBench\AbstractPackageTestCase;
+use StyleCI\Config\ConfigServiceProvider;
 
 /**
  * This is the abstract test case class.
@@ -29,6 +30,6 @@ abstract class AbstractTestCase extends AbstractPackageTestCase
      */
     protected function getServiceProviderClass($app)
     {
-        return 'StyleCI\Config\ConfigServiceProvider';
+        return ConfigServiceProvider::class;
     }
 }
