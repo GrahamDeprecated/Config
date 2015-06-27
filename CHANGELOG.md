@@ -2,6 +2,12 @@ CHANGE LOG
 ==========
 
 
+## V0.3.3 Alpha (27/06/2015)
+
+* Tweaked the laravel preset again
+* Minor cleanup
+
+
 ## V0.3.2 Alpha (01/06/2015)
 
 * Tweaked the laravel preset again
