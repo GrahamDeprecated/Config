@@ -37,7 +37,7 @@ class ConfigTest extends AbstractTestBenchTestCase
     {
         $fixers = (new Config())->preset('psr2')->getFixers();
 
-        $this->assertInArray('psr0', $fixers);
+        $this->assertNotContains('psr0', $fixers);
         $this->assertInArray('visibility', $fixers);
     }
 

@@ -37,6 +37,7 @@ class ConfigFactoryTest extends AbstractTestBenchTestCase
     {
         $config = (new ConfigFactory())->make(['preset' => 'symfony']);
 
+        $this->assertInArray('psr0', $config->getFixers());
         $this->assertInArray('unused_use', $config->getFixers());
         $this->assertInArray('phpdoc_no_empty_return', $config->getFixers());
         $this->assertNotContains('strict', $config->getFixers());
@@ -56,7 +57,7 @@ class ConfigFactoryTest extends AbstractTestBenchTestCase
         $config = (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/custom.yml'));
 
         $this->assertInArray('phpdoc_no_package', $config->getFixers());
-        $this->assertNotContains('psr0', $config->getFixers());
+        $this->assertNotContains('encoding', $config->getFixers());
         $this->assertSame(['php', 'php.stub'], $config->getExtensions());
         $this->assertSame(['foo', 'bar'], $config->getExcluded());
     }
