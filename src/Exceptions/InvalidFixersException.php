@@ -25,7 +25,7 @@ class InvalidFixersException extends InvalidArgumentException implements ConfigE
      *
      * @var string[]
      */
-    protected $fixer;
+    protected $fixers;
 
     /**
      * Create a new invalid fixer exception instance.
