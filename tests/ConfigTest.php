@@ -85,6 +85,24 @@ class ConfigTest extends AbstractTestBenchTestCase
     }
 
     /**
+     * @expectedException \StyleCI\Config\Exceptions\InvalidFixersException
+     * @expectedExceptionMessage The provided fixer 'long_array_syntax' cannot be enabled at the same time as 'short_array_syntax'.
+     */
+    public function testConflictingFixers()
+    {
+        $config = new Config();
+
+        $config->enable('psr0')->enable('short_array_syntax')->enable('encoding')->enable('long_array_syntax');
+
+        try {
+            $config->getFixers();
+        } catch (Exception $e) {
+            $this->assertSame(['long_array_syntax', 'short_array_syntax'], $e->getFixers());
+            throw $e;
+        }
+    }
+
+    /**
      * @expectedException \StyleCI\Config\Exceptions\InvalidPresetException
      * @expectedExceptionMessage The provided preset 'bar' was not valid.
      */

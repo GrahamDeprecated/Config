@@ -12,6 +12,7 @@
 namespace StyleCI\Config;
 
 use StyleCI\Config\Exceptions\InvalidFixerException;
+use StyleCI\Config\Exceptions\InvalidFixersException;
 use StyleCI\Config\Exceptions\InvalidPresetException;
 
 /**
@@ -372,6 +373,20 @@ class Config
     ];
 
     /**
+     * The conflicting fixers.
+     *
+     * @var string[]
+     */
+    protected static $conflicts = [
+        'phpdoc_var_to_type'              => 'phpdoc_type_to_var',
+        'long_array_syntax'               => 'short_array_syntax',
+        'concat_with_spaces'              => 'concat_without_spaces',
+        'unalign_equals'                  => 'align_equals',
+        'unalign_double_arrow'            => 'align_double_arrow',
+        'no_blank_lines_before_namespace' => 'single_blank_line_before_namespace',
+    ];
+
+    /**
      * The enabled fixers.
      *
      * @var string[]
@@ -479,10 +494,18 @@ class Config
     /**
      * Get the enabled fixers.
      *
+     * @throws \StyleCI\Config\Exceptions\InvalidFixersException
+     *
      * @return string[]
      */
     public function getFixers()
     {
+        foreach (static::$conflicts as $first => $second) {
+            if (in_array($first, $this->fixers, true) && in_array($second, $this->fixers, true)) {
+                throw new InvalidFixersException([$first, $second]);
+            }
+        }
+
         return $this->fixers;
     }
 
