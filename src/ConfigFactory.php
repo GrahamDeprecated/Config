@@ -12,7 +12,7 @@
 namespace StyleCI\Config;
 
 use Exception;
-use StyleCI\Config\Exceptions\InvalidFinderTypeException;
+use StyleCI\Config\Exceptions\InvalidFinderException;
 use StyleCI\Config\Exceptions\InvalidYamlException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -24,7 +24,6 @@ use Symfony\Component\Yaml\Yaml;
 class ConfigFactory
 {
     protected static $finderMethods = [
-        'in',
         'exclude',
         'name',
         'notName',
@@ -33,7 +32,6 @@ class ConfigFactory
         'path',
         'notPath',
         'depth',
-        'date',
     ];
 
     /**
@@ -77,7 +75,7 @@ class ConfigFactory
      *
      * @param array $input
      *
-     * @throws \StyleCI\Config\Exceptions\InvalidFinderTypeException
+     * @throws \StyleCI\Config\Exceptions\InvalidFinderException
      *
      * @return \StyleCI\Config\FinderConfig
      */
@@ -89,7 +87,7 @@ class ConfigFactory
             $finderMethod = str_replace(' ', '', lcfirst(ucwords(strtr($name, '_- ', '  '))));
 
             if (!in_array($finderMethod, self::$finderMethods, true)) {
-                throw new InvalidFinderTypeException($name);
+                throw new InvalidFinderException($name);
             }
 
             $finderConfig->$finderMethod($config);

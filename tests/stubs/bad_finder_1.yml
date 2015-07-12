@@ -6,7 +6,5 @@ enabled:
 disabled: psr0
 
 finder:
-    in:
-        - src/
-    filter:
-        - Kernel
+  filter:
+    - Kernel

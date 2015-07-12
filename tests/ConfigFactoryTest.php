@@ -11,6 +11,7 @@
 
 namespace StyleCI\Tests\Config;
 
+use Exception;
 use GrahamCampbell\TestBench\AbstractTestCase as AbstractTestBenchTestCase;
 use StyleCI\Config\ConfigFactory;
 use StyleCI\Config\FinderConfig;
@@ -68,7 +69,6 @@ class ConfigFactoryTest extends AbstractTestBenchTestCase
 
         $this->assertInstanceOf(FinderConfig::class, $config->getFinderConfig());
 
-        $this->assertEquals(['src'], $config->getFinderConfig()->getIn());
         $this->assertEquals(['*.php', '*.php.stub'], $config->getFinderConfig()->getName());
         $this->assertEquals(['foo', 'bar'], $config->getFinderConfig()->getExclude());
         $this->assertEquals(['Kernel'], $config->getFinderConfig()->getNotContains());
@@ -76,12 +76,31 @@ class ConfigFactoryTest extends AbstractTestBenchTestCase
     }
 
     /**
-     * @expectedException \StyleCI\Config\Exceptions\InvalidFinderTypeException
+     * @expectedException \StyleCI\Config\Exceptions\InvalidFinderException
      * @expectedExceptionMessage The provided finder type 'filter' was not valid.
      */
     public function testMakeConfigFromYmlWithInvalidFinderType()
     {
-        (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/invalid_finder_type.yml'));
+        try {
+            (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/bad_finder_1.yml'));
+        } catch (Exception $e) {
+            $this->assertSame('filter', $e->getType());
+            throw $e;
+        }
+    }
+
+    /**
+     * @expectedException \StyleCI\Config\Exceptions\InvalidFinderException
+     * @expectedExceptionMessage The provided finder type was not valid.
+     */
+    public function testMakeConfigFromYmlWithInvalidFinderTypeAgain()
+    {
+        try {
+            (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/bad_finder_2.yml'));
+        } catch (Exception $e) {
+            $this->assertSame(123, $e->getType());
+            throw $e;
+        }
     }
 
     /**

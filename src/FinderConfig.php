@@ -11,32 +11,18 @@
 
 namespace StyleCI\Config;
 
-use StyleCI\Config\Exceptions\InvalidFinderDirectoryException;
-
 /**
  * This is the finder configuration class.
  *
- * Each configuration is used for a "test", the Finder uses
- * the tests to determine if the matched file fulfills the tests condition.
- *
- * Note that setter methods will overwrite the existing configuration
- * of the related type. So calling in() multiple times will overwrite
- * the previously set values of "in".
+ * Each configuration is used for a "test", the Finder uses the tests to
+ * determine if the matched file fulfills the tests condition. Note that setter
+ * methods will overwrite the existing configuration of the related type.
  *
  * @author Graham Campbell <graham@alt-three.com>
  * @author Sebastiaan Stok <s.stok@rollerscapes.net>
  */
 class FinderConfig
 {
-    /**
-     * The the files and directories which match the defined rules.
-     *
-     * Directories are relative to the root-directory of the "project".
-     *
-     * @var string[]
-     */
-    protected $in = [];
-
     /**
      * The directories which are excluded.
      *
@@ -97,52 +83,6 @@ class FinderConfig
      * @var string[]
      */
     protected $depth = [];
-
-    /**
-     * The tests for file dates (last modified).
-     *
-     * The date must be something that strtotime() is able to parse:
-     *
-     *   'since yesterday'
-     *   'until 2 days ago'
-     *   '> now - 2 hours'
-     *   '>= 2005-10-15'
-     *
-     * @var string[]
-     */
-    protected $date = [];
-
-    /**
-     * Set the files and directories which match the defined rules.
-     *
-     * @param string[]|string $dirs
-     *
-     * @return \StyleCI\Config\FinderConfig
-     */
-    public function in($dirs)
-    {
-        $dirs = array_map(
-            function ($directory) {
-                if (!is_string($directory) && !is_numeric($directory)) {
-                    throw new InvalidFinderDirectoryException($directory);
-                }
-
-                $directory = trim(str_replace('\\', '/', $directory), '/');
-
-                // Detect for directory path traversal.
-                if ($directory === '..' || false !== strpos($directory, '../') || false !== strpos($directory, '/..')) {
-                    throw new InvalidFinderDirectoryException($directory);
-                }
-
-                return $directory;
-            },
-            (array) $dirs
-        );
-
-        $this->in = $dirs;
-
-        return $this;
-    }
 
     /**
      * Set which directories are excluded.
@@ -276,37 +216,6 @@ class FinderConfig
     }
 
     /**
-     * Set tests for file dates (last modified).
-     *
-     * The date must be something that strtotime() is able to parse:
-     *
-     *   'since yesterday'
-     *   'until 2 days ago'
-     *   '> now - 2 hours'
-     *   '>= 2005-10-15'
-     *
-     * @param string[]|string $date
-     *
-     * @return \StyleCI\Config\FinderConfig
-     */
-    public function date($date)
-    {
-        $this->date = (array) $date;
-
-        return $this;
-    }
-
-    /**
-     * Get the files and directories which match the defined rules.
-     *
-     * @return string[]
-     */
-    public function getIn()
-    {
-        return $this->in;
-    }
-
-    /**
      * Get the directories which are excluded.
      *
      * @return string[]
@@ -384,15 +293,5 @@ class FinderConfig
     public function getDepth()
     {
         return $this->depth;
-    }
-
-    /**
-     * Get the tests for file dates (last modified).
-     *
-     * @return string[]
-     */
-    public function getDate()
-    {
-        return $this->date;
     }
 }

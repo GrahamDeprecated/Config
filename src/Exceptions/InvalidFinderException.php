@@ -14,11 +14,11 @@ namespace StyleCI\Config\Exceptions;
 use InvalidArgumentException;
 
 /**
- * This is the invalid finder type exception class.
+ * This is the invalid finder exception class.
  *
  * @author Sebastiaan Stok <s.stok@rollerscapes.net>
  */
-class InvalidFinderTypeException extends InvalidArgumentException implements ConfigExceptionInterface
+class InvalidFinderException extends InvalidArgumentException implements ConfigExceptionInterface
 {
     /**
      * The invalid type.
@@ -28,7 +28,7 @@ class InvalidFinderTypeException extends InvalidArgumentException implements Con
     protected $type;
 
     /**
-     * Create a new invalid finder type exception instance.
+     * Create a new invalid finder exception instance.
      *
      * @param mixed $type
      *

@@ -6,15 +6,13 @@ enabled:
 disabled: psr0
 
 finder:
-    in:
-        - src/
-    name:
-        - '*.php'
-        - '*.php.stub'
-    exclude:
-      - foo
-      - bar
-    not_contains:
-        - Kernel
-    not-path:
-        - 'Fixtures/*'
+  name:
+    - '*.php'
+    - '*.php.stub'
+  exclude:
+    - foo
+    - bar
+  not_contains:
+    - Kernel
+  not-path:
+    - 'Fixtures/*'

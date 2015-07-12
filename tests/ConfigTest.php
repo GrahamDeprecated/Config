@@ -41,6 +41,16 @@ class ConfigTest extends AbstractTestBenchTestCase
         $this->assertInArray('visibility', $fixers);
     }
 
+    public function testLaravelPreset()
+    {
+        $fixers = (new Config())->preset('laravel')->getFixers();
+
+        $this->assertNotContains('psr0', $fixers);
+        $this->assertNotContains('unused_use', $fixers);
+        $this->assertNotContains('phpdoc_align', $fixers);
+        $this->assertInArray('visibility', $fixers);
+    }
+
     public function testEnableConfig()
     {
         $fixers = (new Config())->enable('psr0')->getFixers();
