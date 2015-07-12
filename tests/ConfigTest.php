@@ -26,7 +26,7 @@ class ConfigTest extends AbstractTestBenchTestCase
 {
     public function testPreset()
     {
-        $fixers = (new Config())->preset('styleci')->getFixers();
+        $fixers = (new Config())->preset('recommended')->getFixers();
 
         $this->assertInArray('psr0', $fixers);
         $this->assertInArray('encoding', $fixers);
@@ -144,7 +144,7 @@ class ConfigTest extends AbstractTestBenchTestCase
     {
         $config = new Config();
 
-        $config->preset('styleci');
+        $config->preset('recommended');
         $this->assertInArray('psr0', $config->getFixers());
 
         $config->disable('psr0');

@@ -428,30 +428,12 @@ class Config
      */
     public function preset($preset)
     {
-        switch ($preset) {
-            case 'none':
-                $this->fixers = [];
-                break;
-            case 'psr1':
-            case 'psr-1':
-                $this->fixers = static::$psr1Fixers;
-                break;
-            case 'psr2':
-            case 'psr-2':
-                $this->fixers = static::$psr2Fixers;
-                break;
-            case 'symfony':
-                $this->fixers = static::$symfonyFixers;
-                break;
-            case 'laravel':
-                $this->fixers = static::$laravelFixers;
-                break;
-            case 'recommended':
-            case 'styleci':
-                $this->fixers = static::$recommendedFixers;
-                break;
-            default:
-                throw new InvalidPresetException($preset);
+        if ($preset === 'none') {
+            $this->fixers = [];
+        } elseif (is_string($preset) && property_exists($this, $property = str_replace('psr-', 'psr', $preset).'Fixers')) {
+            $this->fixers = static::$$property;
+        } else {
+            throw new InvalidPresetException($preset);
         }
 
         return $this;
