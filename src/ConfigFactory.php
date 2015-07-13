@@ -12,6 +12,7 @@
 namespace StyleCI\Config;
 
 use Exception;
+use InvalidArgumentException;
 use StyleCI\Config\Exceptions\InvalidFinderException;
 use StyleCI\Config\Exceptions\InvalidYamlException;
 use Symfony\Component\Yaml\Yaml;
@@ -111,6 +112,10 @@ class ConfigFactory
             $parsed = Yaml::parse($yaml, true);
         } catch (Exception $e) {
             throw new InvalidYamlException($e);
+        }
+
+        if (!is_array($parsed)) {
+            throw new InvalidYamlException(new InvalidArgumentException('The yaml must represent an array.'));
         }
 
         return $this->make($parsed);
