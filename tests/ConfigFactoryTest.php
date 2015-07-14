@@ -111,4 +111,13 @@ class ConfigFactoryTest extends AbstractTestBenchTestCase
     {
         (new ConfigFactory())->makeFromYaml('foo: !!php/object:O:30:"foo";}');
     }
+
+    /**
+     * @expectedException \StyleCI\Config\Exceptions\InvalidYamlException
+     * @expectedExceptionMessage The yaml must represent an array.
+     */
+    public function testMakeNonArrayConfig()
+    {
+        (new ConfigFactory())->makeFromYaml(123);
+    }
 }
