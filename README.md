@@ -27,7 +27,7 @@ If you're using Laravel 5, then you can register our service provider. Open up `
 
 ## Documentation
 
-StyleCI Config was created by is a code style configuration manager.
+StyleCI Config is a code style configuration manager.
 
 Feel free to check out the [releases](https://github.com/StyleCI/Config/releases), [license](LICENSE), and [contribution guidelines](CONTRIBUTING.md).
 
