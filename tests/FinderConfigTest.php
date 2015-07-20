@@ -11,7 +11,7 @@
 
 namespace StyleCI\Tests\Config;
 
-use GrahamCampbell\TestBench\AbstractTestCase as AbstractTestBenchTestCase;
+use GrahamCampbell\TestBench\AbstractTestCase;
 use StyleCI\Config\FinderConfig;
 
 /**
@@ -19,7 +19,7 @@ use StyleCI\Config\FinderConfig;
  *
  * @author Sebastiaan Stok <s.stok@rollerscapes.net>
  */
-class FinderConfigTest extends AbstractTestBenchTestCase
+class FinderConfigTest extends AbstractTestCase
 {
     public function testExclude()
     {

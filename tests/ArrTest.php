@@ -11,7 +11,7 @@
 
 namespace StyleCI\Tests\Config;
 
-use GrahamCampbell\TestBench\AbstractTestCase as AbstractTestBenchTestCase;
+use GrahamCampbell\TestBench\AbstractTestCase;
 use StyleCI\Config\Arr;
 
 /**
@@ -19,7 +19,7 @@ use StyleCI\Config\Arr;
  *
  * @author Joseph Cohen <joe@alt-three.com>
  */
-class ArrTest extends AbstractTestBenchTestCase
+class ArrTest extends AbstractTestCase
 {
     public function testArrayGet()
     {

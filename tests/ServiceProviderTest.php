@@ -11,17 +11,24 @@
 
 namespace StyleCI\Tests\Config;
 
+use GrahamCampbell\TestBench\AbstractPackageTestCase;
 use GrahamCampbell\TestBenchCore\ServiceProviderTrait;
 use StyleCI\Config\ConfigFactory;
+use StyleCI\Config\ConfigServiceProvider;
 
 /**
  * This is the service provider test class.
  *
  * @author Graham Campbell <graham@alt-three.com>
  */
-class ServiceProviderTest extends AbstractTestCase
+class ServiceProviderTest extends AbstractPackageTestCase
 {
     use ServiceProviderTrait;
+
+    protected function getServiceProviderClass($app)
+    {
+        return ConfigServiceProvider::class;
+    }
 
     public function testConfigFactoryIsInjectable()
     {
