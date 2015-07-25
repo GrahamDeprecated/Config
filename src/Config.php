@@ -28,7 +28,7 @@ class Config
      *
      * @var string[]
      */
-    protected static $validFixers = [
+    const VALID_FIXERS = [
         'psr0',
         'encoding',
         'short_tag',
@@ -119,7 +119,7 @@ class Config
      *
      * @var string[]
      */
-    protected static $psr1Fixers = [
+    const PSR1_FIXERS = [
         'encoding',
         'short_tag',
     ];
@@ -129,7 +129,7 @@ class Config
      *
      * @var string[]
      */
-    protected static $psr2Fixers = [
+    const PSR2_FIXERS = [
         'encoding',
         'short_tag',
         'braces',
@@ -156,7 +156,7 @@ class Config
      *
      * @var string[]
      */
-    protected static $symfonyFixers = [
+    const SYMFONY_FIXERS = [
         'psr0',
         'encoding',
         'short_tag',
@@ -231,7 +231,7 @@ class Config
      *
      * @var string[]
      */
-    protected static $laravelFixers = [
+    const LARAVEL_FIXERS = [
         'encoding',
         'short_tag',
         'braces',
@@ -300,7 +300,7 @@ class Config
      *
      * @var string[]
      */
-    protected static $recommendedFixers = [
+    const RECOMMENDED_FIXERS = [
         'psr0',
         'encoding',
         'short_tag',
@@ -377,7 +377,7 @@ class Config
      *
      * @var string[]
      */
-    protected static $conflicts = [
+    const CONFLICTS = [
         'phpdoc_var_to_type'              => 'phpdoc_type_to_var',
         'long_array_syntax'               => 'short_array_syntax',
         'concat_with_spaces'              => 'concat_without_spaces',
@@ -430,8 +430,8 @@ class Config
     {
         if ($preset === 'none') {
             $this->fixers = [];
-        } elseif (is_string($preset) && property_exists($this, $property = str_replace('psr-', 'psr', $preset).'Fixers')) {
-            $this->fixers = static::$$property;
+        } elseif (is_string($preset) && defined($constant = 'static::'.strtoupper(str_replace('psr-', 'psr', $preset)).'_FIXERS')) {
+            $this->fixers = constant($constant);
         } else {
             throw new InvalidPresetException($preset);
         }
@@ -450,7 +450,7 @@ class Config
      */
     public function enable($fixer)
     {
-        if (!is_string($fixer) || !in_array($fixer, static::$validFixers, true)) {
+        if (!is_string($fixer) || !in_array($fixer, static::VALID_FIXERS, true)) {
             throw new InvalidFixerException($fixer);
         }
 
@@ -482,7 +482,7 @@ class Config
      */
     public function getFixers()
     {
-        foreach (static::$conflicts as $first => $second) {
+        foreach (static::CONFLICTS as $first => $second) {
             if (in_array($first, $this->fixers, true) && in_array($second, $this->fixers, true)) {
                 throw new InvalidFixersException([$first, $second]);
             }

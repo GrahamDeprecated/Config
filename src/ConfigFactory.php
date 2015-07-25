@@ -24,7 +24,7 @@ use Symfony\Component\Yaml\Yaml;
  */
 class ConfigFactory
 {
-    protected static $finderMethods = [
+    const FINDER_METHODS = [
         'exclude',
         'name',
         'notName',
@@ -87,7 +87,7 @@ class ConfigFactory
         foreach ($input as $name => $config) {
             $finderMethod = str_replace(' ', '', lcfirst(ucwords(strtr($name, '_- ', '  '))));
 
-            if (!in_array($finderMethod, self::$finderMethods, true)) {
+            if (!in_array($finderMethod, statc::FINDER_METHODS, true)) {
                 throw new InvalidFinderException($name);
             }
 
