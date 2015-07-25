@@ -87,7 +87,7 @@ class ConfigFactory
         foreach ($input as $name => $config) {
             $finderMethod = str_replace(' ', '', lcfirst(ucwords(strtr($name, '_- ', '  '))));
 
-            if (!in_array($finderMethod, statc::FINDER_METHODS, true)) {
+            if (!in_array($finderMethod, static::FINDER_METHODS, true)) {
                 throw new InvalidFinderException($name);
             }
 
