@@ -253,6 +253,7 @@ class Config
         'linefeed',
         'line_after_namespace',
         'list_commas',
+        'logical_not_operators_with_spaces',
         'lowercase_constants',
         'lowercase_keywords',
         'method_argument_space',
@@ -263,7 +264,6 @@ class Config
         'no_blank_lines_after_class_opening',
         'no_empty_lines_after_phpdocs',
         'object_operator',
-        'operators_spaces',
         'parenthesis',
         'phpdoc_indent',
         'phpdoc_inline_tag',
@@ -294,6 +294,7 @@ class Config
         'trim_array_spaces',
         'unalign_equals',
         'unary_operators_spaces',
+        'unused_use',
         'visibility',
         'whitespacy_lines',
     ];
