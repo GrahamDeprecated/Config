@@ -385,7 +385,6 @@ class Config
         'concat_with_spaces'              => 'concat_without_spaces',
         'long_array_syntax'               => 'short_array_syntax',
         'no_blank_lines_before_namespace' => 'single_blank_line_before_namespace',
-        'operators_spaces'                => 'logical_not_operators_with_spaces',
         'phpdoc_var_to_type'              => 'phpdoc_type_to_var',
         'unalign_double_arrow'            => 'align_double_arrow',
         'unalign_equals'                  => 'align_equals',
