@@ -28,9 +28,10 @@ class ConfigTest extends AbstractTestCase
     {
         $fixers = (new Config())->preset('recommended')->getFixers();
 
-        $this->assertInArray('psr0', $fixers);
-        $this->assertInArray('encoding', $fixers);
         $this->assertInArray('elseif', $fixers);
+        $this->assertInArray('encoding', $fixers);
+        $this->assertInArray('psr0', $fixers);
+        $this->assertNotContains('logical_not_operators_with_spaces', $fixers);
     }
 
     public function testPresetAgain()
@@ -45,10 +46,10 @@ class ConfigTest extends AbstractTestCase
     {
         $fixers = (new Config())->preset('laravel')->getFixers();
 
-        $this->assertNotContains('psr0', $fixers);
-        $this->assertNotContains('unused_use', $fixers);
-        $this->assertNotContains('phpdoc_align', $fixers);
+        $this->assertInArray('logical_not_operators_with_spaces', $fixers);
         $this->assertInArray('visibility', $fixers);
+        $this->assertNotContains('phpdoc_align', $fixers);
+        $this->assertNotContains('psr0', $fixers);
     }
 
     public function testEnableConfig()
