@@ -28,7 +28,7 @@ class Config
      *
      * @var string[]
      */
-    const VALID_FIXERS = [
+    const VALID = [
         'psr0',
         'encoding',
         'short_tag',
@@ -450,7 +450,7 @@ class Config
      */
     public function enable($fixer)
     {
-        if (!is_string($fixer) || !in_array($fixer, static::VALID_FIXERS, true)) {
+        if (!is_string($fixer) || !in_array($fixer, static::VALID, true)) {
             throw new InvalidFixerException($fixer);
         }
 
