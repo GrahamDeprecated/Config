@@ -264,6 +264,7 @@ class Config
         'no_blank_lines_after_class_opening',
         'no_empty_lines_after_phpdocs',
         'object_operator',
+        'operators_spaces',
         'parenthesis',
         'phpdoc_indent',
         'phpdoc_inline_tag',
