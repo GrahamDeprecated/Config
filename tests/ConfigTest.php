@@ -114,14 +114,14 @@ class ConfigTest extends AbstractTestCase
 
     /**
      * @expectedException \StyleCI\Config\Exceptions\InvalidPresetException
-     * @expectedExceptionMessage The provided preset 'bar' was not valid.
+     * @expectedExceptionMessage The provided preset 'valid' was not valid.
      */
     public function testEnableInvalidPreset()
     {
         try {
-            (new Config())->preset('bar');
+            (new Config())->preset('valid');
         } catch (Exception $e) {
-            $this->assertSame('bar', $e->getPreset());
+            $this->assertSame('valid', $e->getPreset());
             throw $e;
         }
     }
