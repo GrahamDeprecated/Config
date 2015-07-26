@@ -46,7 +46,6 @@ class ConfigTest extends AbstractTestCase
     {
         $fixers = (new Config())->preset('laravel')->getFixers();
 
-        $this->assertInArray('logical_not_operators_with_spaces', $fixers);
         $this->assertInArray('visibility', $fixers);
         $this->assertNotContains('phpdoc_align', $fixers);
         $this->assertNotContains('psr0', $fixers);
