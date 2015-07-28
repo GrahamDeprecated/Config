@@ -11,6 +11,8 @@
 
 namespace StyleCI\Config;
 
+use StyleCI\Config\Exceptions\FixerAlreadyEnabledException;
+use StyleCI\Config\Exceptions\FixerNotEnabledException;
 use StyleCI\Config\Exceptions\InvalidFixerException;
 use StyleCI\Config\Exceptions\InvalidFixersException;
 use StyleCI\Config\Exceptions\InvalidPresetException;
@@ -377,6 +379,16 @@ class Config
     ];
 
     /**
+     * The aliased fixers.
+     *
+     * @var string[]
+     */
+    const ALIASES = [
+        'phpdoc_params' => 'phpdoc_align',
+        'join_function' => 'alias_functions',
+    ];
+
+    /**
      * The conflicting fixers.
      *
      * @var string[]
@@ -412,11 +424,40 @@ class Config
     protected $excluded = [];
 
     /**
+     * Is linting enabled?
+     *
+     * @var bool
+     */
+    protected $linting = true;
+
+    /**
      * The configuration of the Finder.
      *
      * @var \StyleCI\Config\FinderConfig|null
      */
     protected $finderConfig;
+
+    /**
+     * Resolve the fixer name if it's a valid fixer.
+     *
+     * @param string $fixer
+     *
+     * @return string|null
+     */
+    public static function resolveFixer($fixer)
+    {
+        if (!is_string($fixer)) {
+            return;
+        }
+
+        if (in_array($fixer, static::VALID, true)) {
+            return $fixer;
+        }
+
+        if (array_key_exists($fixer, static::ALIASES)) {
+            return static::ALIASES[$fixer];
+        }
+    }
 
     /**
      * Set the enabled fixers to a preset.
@@ -448,17 +489,21 @@ class Config
      *
      * @param string $fixer
      *
-     * @throws \StyleCI\Config\Exceptions\InvalidFixerException
+     * @throws \StyleCI\Config\Exceptions\FixerAlreadyEnabledException|\StyleCI\Config\Exceptions\InvalidFixerException
      *
      * @return \StyleCI\Config\Config
      */
     public function enable($fixer)
     {
-        if (!is_string($fixer) || !in_array($fixer, static::VALID, true)) {
+        $resolved = static::resolveFixer($fixer);
+
+        if (!$resolved) {
             throw new InvalidFixerException($fixer);
         }
 
-        Arr::add($this->fixers, $fixer);
+        if (!Arr::add($this->fixers, $resolved)) {
+            throw new FixerAlreadyEnabledException($fixer);
+        }
 
         return $this;
     }
@@ -468,11 +513,21 @@ class Config
      *
      * @param string $fixer
      *
+     * @throws \StyleCI\Config\Exceptions\FixerNotEnabledException|\StyleCI\Config\Exceptions\InvalidFixerException
+     *
      * @return \StyleCI\Config\Config
      */
     public function disable($fixer)
     {
-        Arr::remove($this->fixers, $fixer);
+        $resolved = static::resolveFixer($fixer);
+
+        if (!$resolved) {
+            throw new InvalidFixerException($fixer);
+        }
+
+        if (!Arr::remove($this->fixers, $resolved)) {
+            throw new FixerNotEnabledException($fixer);
+        }
 
         return $this;
     }
@@ -541,6 +596,30 @@ class Config
     public function getExcluded()
     {
         return $this->excluded;
+    }
+
+    /**
+     * Set if linting is enabled.
+     *
+     * @param bool $linting
+     *
+     * @return \StyleCI\Config\Config
+     */
+    public function linting($linting)
+    {
+        $this->linting = $linting;
+
+        return $this;
+    }
+
+    /**
+     * Get if linting is enabled.
+     *
+     * @return bool
+     */
+    public function isLinting()
+    {
+        return $this->linting;
     }
 
     /**

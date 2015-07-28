@@ -12,3 +12,5 @@ extensions:
 excluded:
   - foo
   - bar
+
+linting: false

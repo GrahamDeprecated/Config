@@ -63,7 +63,14 @@ class ConfigTest extends AbstractTestCase
     {
         $fixers = (new Config())->preset('none')->getFixers();
 
-        $this->assertSame($fixers, []);
+        $this->assertSame([], $fixers);
+    }
+
+    public function testWithAlias()
+    {
+        $fixers = (new Config())->preset('none')->enable('phpdoc_params')->getFixers();
+
+        $this->assertSame(['phpdoc_align'], $fixers);
     }
 
     /**
@@ -90,6 +97,20 @@ class ConfigTest extends AbstractTestCase
             (new Config())->enable([]);
         } catch (Exception $e) {
             $this->assertSame([], $e->getFixer());
+            throw $e;
+        }
+    }
+
+    /**
+     * @expectedException \StyleCI\Config\Exceptions\FixerAlreadyEnabledException
+     * @expectedExceptionMessage The provided fixer 'phpdoc_indent' cannot be enabled again because it was already enabled by your preset.
+     */
+    public function testEnableAlreadyEnabledFixer()
+    {
+        try {
+            (new Config())->preset('symfony')->enable('phpdoc_indent');
+        } catch (Exception $e) {
+            $this->assertSame('phpdoc_indent', $e->getFixer());
             throw $e;
         }
     }
@@ -149,6 +170,45 @@ class ConfigTest extends AbstractTestCase
 
         $config->disable('psr0');
         $this->assertNotContains('psr0', $config->getFixers());
+    }
+
+    public function testDisableConfigWithAlias()
+    {
+        $config = new Config();
+
+        $config->preset('recommended');
+        $this->assertInArray('phpdoc_align', $config->getFixers());
+
+        $config->disable('phpdoc_params');
+        $this->assertNotContains('phpdoc_align', $config->getFixers());
+    }
+
+    /**
+     * @expectedException \StyleCI\Config\Exceptions\InvalidFixerException
+     * @expectedExceptionMessage The provided fixer 'foo' was not valid.
+     */
+    public function testDisableInvalidFixer()
+    {
+        try {
+            $config = (new Config())->preset('psr2')->disable('foo');
+        } catch (Exception $e) {
+            $this->assertSame('foo', $e->getFixer());
+            throw $e;
+        }
+    }
+
+    /**
+     * @expectedException \StyleCI\Config\Exceptions\FixerNotEnabledException
+     * @expectedExceptionMessage The provided fixer 'psr0' cannot be disabled unless it was already enabled by your preset.
+     */
+    public function testDisableBadFixer()
+    {
+        try {
+            $config = (new Config())->preset('psr2')->disable('psr0');
+        } catch (Exception $e) {
+            $this->assertSame('psr0', $e->getFixer());
+            throw $e;
+        }
     }
 
     public function testFinderConfig()

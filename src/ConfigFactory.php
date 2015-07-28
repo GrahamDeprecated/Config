@@ -52,12 +52,12 @@ class ConfigFactory
 
         $config->preset(Arr::get($input, 'preset', 'recommended'));
 
-        foreach ((array) Arr::get($input, 'enabled', []) as $fixer) {
-            $config->enable($fixer);
-        }
-
         foreach ((array) Arr::get($input, 'disabled', []) as $fixer) {
             $config->disable($fixer);
+        }
+
+        foreach ((array) Arr::get($input, 'enabled', []) as $fixer) {
+            $config->enable($fixer);
         }
 
         if (isset($input['finder'])) {
@@ -67,6 +67,8 @@ class ConfigFactory
 
             $config->excluded((array) Arr::get($input, 'excluded', ['storage']));
         }
+
+        $config->linting((bool) Arr::get($input, 'linting', true));
 
         return $config;
     }

@@ -44,6 +44,7 @@ class ConfigFactoryTest extends AbstractTestCase
         $this->assertNotContains('strict', $config->getFixers());
         $this->assertSame(['php'], $config->getExtensions());
         $this->assertSame(['storage'], $config->getExcluded());
+        $this->assertTrue($config->isLinting());
     }
 
     public function testMakeConfigFromYml()
@@ -61,6 +62,7 @@ class ConfigFactoryTest extends AbstractTestCase
         $this->assertNotContains('encoding', $config->getFixers());
         $this->assertSame(['php', 'php.stub'], $config->getExtensions());
         $this->assertSame(['foo', 'bar'], $config->getExcluded());
+        $this->assertFalse($config->isLinting());
     }
 
     public function testMakeConfigFromYmlWithFinder()
