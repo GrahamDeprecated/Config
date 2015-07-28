@@ -39,13 +39,17 @@ class Arr
      * @param array $array
      * @param mixed $item
      *
-     * @return void
+     * @return bool
      */
     public static function add(&$array, $item)
     {
         if (!in_array($item, $array, true)) {
             $array[] = $item;
+
+            return true;
         }
+
+        return false;
     }
 
     /**
@@ -54,7 +58,7 @@ class Arr
      * @param array $array
      * @param mixed $item
      *
-     * @return void
+     * @return bool
      */
     public static function remove(&$array, $item)
     {
@@ -62,6 +66,10 @@ class Arr
 
         if ($index !== false) {
             unset($array[$index]);
+
+            return true;
         }
+
+        return false;
     }
 }
