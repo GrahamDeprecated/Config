@@ -13,7 +13,6 @@ namespace StyleCI\Config;
 
 use Exception;
 use InvalidArgumentException;
-use StyleCI\Config\Exceptions\InvalidFinderException;
 use StyleCI\Config\Exceptions\InvalidYamlException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -24,17 +23,6 @@ use Symfony\Component\Yaml\Yaml;
  */
 class ConfigFactory
 {
-    const FINDER_METHODS = [
-        'exclude',
-        'name',
-        'notName',
-        'contains',
-        'notContains',
-        'path',
-        'notPath',
-        'depth',
-    ];
-
     /**
      * Make a new config object.
      *
@@ -52,6 +40,8 @@ class ConfigFactory
 
         $config->preset(Arr::get($input, 'preset', 'recommended'));
 
+        $config->linting((bool) Arr::get($input, 'linting', true));
+
         foreach ((array) Arr::get($input, 'disabled', []) as $fixer) {
             $config->disable($fixer);
         }
@@ -60,15 +50,7 @@ class ConfigFactory
             $config->enable($fixer);
         }
 
-        if (isset($input['finder'])) {
-            $config->finderConfig($this->makeFinderConfig(Arr::get($input, 'finder', [])));
-        } else {
-            $config->extensions((array) Arr::get($input, 'extensions', ['php']));
-
-            $config->excluded((array) Arr::get($input, 'excluded', ['storage']));
-        }
-
-        $config->linting((bool) Arr::get($input, 'linting', true));
+        $config->finderConfig($this->makeFinderConfig(Arr::get($input, 'finder', [])));
 
         return $config;
     }
@@ -78,23 +60,20 @@ class ConfigFactory
      *
      * @param array $input
      *
-     * @throws \StyleCI\Config\Exceptions\InvalidFinderException
-     *
      * @return \StyleCI\Config\FinderConfig
      */
     public function makeFinderConfig(array $input = [])
     {
         $finderConfig = new FinderConfig();
 
-        foreach ($input as $name => $config) {
-            $finderMethod = str_replace(' ', '', lcfirst(ucwords(strtr($name, '_- ', '  '))));
-
-            if (!in_array($finderMethod, static::FINDER_METHODS, true)) {
-                throw new InvalidFinderException($name);
-            }
-
-            $finderConfig->$finderMethod($config);
-        }
+        $finderConfig->exclude((array) Arr::get($input, 'exclude', ['storage', 'vendor']));
+        $finderConfig->name((array) Arr::get($input, 'name', ['*.php']));
+        $finderConfig->notName((array) Arr::get($input, 'not-name', ['*.blade.php']));
+        $finderConfig->contains((array) Arr::get($input, 'contains', []));
+        $finderConfig->notContains((array) Arr::get($input, 'not-contains', []));
+        $finderConfig->path((array) Arr::get($input, 'path', []));
+        $finderConfig->notPath((array) Arr::get($input, 'not-path', []));
+        $finderConfig->depth((array) Arr::get($input, 'depth', []));
 
         return $finderConfig;
     }

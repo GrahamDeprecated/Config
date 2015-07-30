@@ -10,7 +10,7 @@ finder:
   exclude:
     - foo
     - bar
-  not_contains:
+  not-contains:
     - Kernel
   not-path:
     - 'Fixtures/*'

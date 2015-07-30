@@ -410,20 +410,6 @@ class Config
     protected $fixers = [];
 
     /**
-     * The enabled file extensions.
-     *
-     * @var string[]
-     */
-    protected $extensions = [];
-
-    /**
-     * The excluded paths.
-     *
-     * @var string[]
-     */
-    protected $excluded = [];
-
-    /**
      * Is linting enabled?
      *
      * @var bool
@@ -548,54 +534,6 @@ class Config
         }
 
         return $this->fixers;
-    }
-
-    /**
-     * Set the enabled file extensions.
-     *
-     * @param string[] $extensions
-     *
-     * @return \StyleCI\Config\Config
-     */
-    public function extensions(array $extensions)
-    {
-        $this->extensions = $extensions;
-
-        return $this;
-    }
-
-    /**
-     * Get the enabled file extensions.
-     *
-     * @return string[]
-     */
-    public function getExtensions()
-    {
-        return $this->extensions;
-    }
-
-    /**
-     * Set the excluded paths.
-     *
-     * @param string[] $excluded
-     *
-     * @return \StyleCI\Config\Config
-     */
-    public function excluded(array $excluded)
-    {
-        $this->excluded = $excluded;
-
-        return $this;
-    }
-
-    /**
-     * Get the excluded paths.
-     *
-     * @return string[]
-     */
-    public function getExcluded()
-    {
-        return $this->excluded;
     }
 
     /**

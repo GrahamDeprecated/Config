@@ -5,12 +5,4 @@ enabled:
 
 disabled: encoding
 
-extensions:
-  - php
-  - php.stub
-
-excluded:
-  - foo
-  - bar
-
 linting: false

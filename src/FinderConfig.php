@@ -87,13 +87,13 @@ class FinderConfig
     /**
      * Set which directories are excluded.
      *
-     * @param string[]|string $dirs
+     * @param string[] $dirs
      *
      * @return \StyleCI\Config\FinderConfig
      */
-    public function exclude($dirs)
+    public function exclude(array $dirs)
     {
-        $this->exclude = (array) $dirs;
+        $this->exclude = $dirs;
 
         return $this;
     }
@@ -101,13 +101,13 @@ class FinderConfig
     /**
      * Set the rules that files must match.
      *
-     * @param string[]|string $patters
+     * @param string[] $name
      *
      * @return \StyleCI\Config\FinderConfig
      */
-    public function name($patters)
+    public function name(array $name)
     {
-        $this->name = (array) $patters;
+        $this->name = $name;
 
         return $this;
     }
@@ -115,13 +115,13 @@ class FinderConfig
     /**
      * Set the rules that files must not match.
      *
-     * @param string[]|string $patters
+     * @param string[] $notName
      *
      * @return \StyleCI\Config\FinderConfig
      */
-    public function notName($patters)
+    public function notName(array $notName)
     {
-        $this->notName = (array) $patters;
+        $this->notName = $notName;
 
         return $this;
     }
@@ -129,13 +129,13 @@ class FinderConfig
     /**
      * Set tests that file contents must match.
      *
-     * @param string[]|string $patters
+     * @param string[] $contains
      *
      * @return \StyleCI\Config\FinderConfig
      */
-    public function contains($patters)
+    public function contains(array $contains)
     {
-        $this->contains = (array) $patters;
+        $this->contains = $contains;
 
         return $this;
     }
@@ -143,13 +143,13 @@ class FinderConfig
     /**
      * Set tests that file contents must not match.
      *
-     * @param string[]|string $patters
+     * @param string[] $notContains
      *
      * @return \StyleCI\Config\FinderConfig
      */
-    public function notContains($patters)
+    public function notContains(array $notContains)
     {
-        $this->notContains = (array) $patters;
+        $this->notContains = $notContains;
 
         return $this;
     }
@@ -164,13 +164,13 @@ class FinderConfig
      *
      * Use only / as dirname separator.
      *
-     * @param string[]|string $patters
+     * @param string[] $path
      *
      * @return \StyleCI\Config\FinderConfig
      */
-    public function path($patters)
+    public function path(array $path)
     {
-        $this->path = (array) $patters;
+        $this->path = $path;
 
         return $this;
     }
@@ -185,13 +185,13 @@ class FinderConfig
      *
      * Use only / as dirname separator.
      *
-     * @param string[]|string $patters
+     * @param string[] $notPath
      *
      * @return \StyleCI\Config\FinderConfig
      */
-    public function notPath($patters)
+    public function notPath(array $notPath)
     {
-        $this->notPath = (array) $patters;
+        $this->notPath = $notPath;
 
         return $this;
     }
@@ -204,13 +204,13 @@ class FinderConfig
      *   '> 1' // the Finder will start matching at level 1.
      *   '< 3' // the Finder will descend at most 3 levels of directories below the starting point.
      *
-     * @param string[]|string $depth
+     * @param string[] $depth
      *
      * @return \StyleCI\Config\FinderConfig
      */
-    public function depth($depth)
+    public function depth(array $depth)
     {
-        $this->depth = (array) $depth;
+        $this->depth = $depth;
 
         return $this;
     }

@@ -44,14 +44,14 @@ class FinderConfigTest extends AbstractTestCase
 
     public function testContains()
     {
-        $contains = (new FinderConfig())->contains('<'.'?php')->getContains();
+        $contains = (new FinderConfig())->contains(['<'.'?php'])->getContains();
 
         $this->assertEquals(['<'.'?php'], $contains);
     }
 
     public function testNotContains()
     {
-        $notContains = (new FinderConfig())->notContains('Kernel')->getNotContains();
+        $notContains = (new FinderConfig())->notContains(['Kernel'])->getNotContains();
 
         $this->assertEquals(['Kernel'], $notContains);
     }

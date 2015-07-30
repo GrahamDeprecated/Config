@@ -26,12 +26,17 @@ class ConfigFactoryTest extends AbstractTestCase
 {
     public function testMakeConfig()
     {
-        $fixers = (new ConfigFactory())->make()->getFixers();
+        $config = (new ConfigFactory())->make();
 
-        $this->assertInArray('psr0', $fixers);
-        $this->assertInArray('encoding', $fixers);
-        $this->assertInArray('elseif', $fixers);
-        $this->assertNotContains('strict_param', $fixers);
+        $this->assertInArray('psr0', $config->getFixers());
+        $this->assertInArray('encoding', $config->getFixers());
+        $this->assertInArray('elseif', $config->getFixers());
+        $this->assertNotContains('strict_param', $config->getFixers());
+
+        $this->assertEquals(['*.php'], $config->getFinderConfig()->getName());
+        $this->assertEquals(['storage', 'vendor'], $config->getFinderConfig()->getExclude());
+        $this->assertEquals([], $config->getFinderConfig()->getNotContains());
+        $this->assertEquals([], $config->getFinderConfig()->getNotPath());
     }
 
     public function testMakeConfigWithOptions()
@@ -42,8 +47,6 @@ class ConfigFactoryTest extends AbstractTestCase
         $this->assertInArray('unused_use', $config->getFixers());
         $this->assertInArray('phpdoc_no_empty_return', $config->getFixers());
         $this->assertNotContains('strict', $config->getFixers());
-        $this->assertSame(['php'], $config->getExtensions());
-        $this->assertSame(['storage'], $config->getExcluded());
         $this->assertTrue($config->isLinting());
     }
 
@@ -60,8 +63,6 @@ class ConfigFactoryTest extends AbstractTestCase
 
         $this->assertInArray('phpdoc_no_package', $config->getFixers());
         $this->assertNotContains('encoding', $config->getFixers());
-        $this->assertSame(['php', 'php.stub'], $config->getExtensions());
-        $this->assertSame(['foo', 'bar'], $config->getExcluded());
         $this->assertFalse($config->isLinting());
     }
 
@@ -75,34 +76,6 @@ class ConfigFactoryTest extends AbstractTestCase
         $this->assertEquals(['foo', 'bar'], $config->getFinderConfig()->getExclude());
         $this->assertEquals(['Kernel'], $config->getFinderConfig()->getNotContains());
         $this->assertEquals(['Fixtures/*'], $config->getFinderConfig()->getNotPath());
-    }
-
-    /**
-     * @expectedException \StyleCI\Config\Exceptions\InvalidFinderException
-     * @expectedExceptionMessage The provided finder type 'filter' was not valid.
-     */
-    public function testMakeConfigFromYmlWithInvalidFinderType()
-    {
-        try {
-            (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/bad_finder_1.yml'));
-        } catch (Exception $e) {
-            $this->assertSame('filter', $e->getType());
-            throw $e;
-        }
-    }
-
-    /**
-     * @expectedException \StyleCI\Config\Exceptions\InvalidFinderException
-     * @expectedExceptionMessage The provided finder type was not valid.
-     */
-    public function testMakeConfigFromYmlWithInvalidFinderTypeAgain()
-    {
-        try {
-            (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/bad_finder_2.yml'));
-        } catch (Exception $e) {
-            $this->assertSame(123, $e->getType());
-            throw $e;
-        }
     }
 
     /**

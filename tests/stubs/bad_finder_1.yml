@@ -1,8 +1,0 @@
-preset: psr1
-
-enabled:
-  - phpdoc_no_package
-
-finder:
-  filter:
-    - Kernel
