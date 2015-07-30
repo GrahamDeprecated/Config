@@ -417,7 +417,7 @@ class Config
     protected $linting = true;
 
     /**
-     * The configuration of the Finder.
+     * The finder config.
      *
      * @var \StyleCI\Config\FinderConfig|null
      */
@@ -561,21 +561,21 @@ class Config
     }
 
     /**
-     * Set the Finder configuration.
+     * Set the finder config.
      *
-     * @param \StyleCI\Config\FinderConfig $config
+     * @param \StyleCI\Config\FinderConfig $finderConfig
      *
      * @return \StyleCI\Config\Config
      */
-    public function finderConfig(FinderConfig $config)
+    public function finderConfig(FinderConfig $finderConfig)
     {
-        $this->finderConfig = $config;
+        $this->finderConfig = $finderConfig;
 
         return $this;
     }
 
     /**
-     * Get Finder configuration.
+     * Get finder config.
      *
      * @return \StyleCI\Config\FinderConfig|null
      */

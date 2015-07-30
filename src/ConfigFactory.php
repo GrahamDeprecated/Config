@@ -50,7 +50,7 @@ class ConfigFactory
             $config->enable($fixer);
         }
 
-        $config->finderConfig($this->makeFinderConfig(Arr::get($input, 'finder', [])));
+        $config->finderConfig($this->makeFinderConfig((array) Arr::get($input, 'finder', [])));
 
         return $config;
     }

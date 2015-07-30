@@ -12,7 +12,7 @@
 namespace StyleCI\Config;
 
 /**
- * This is the finder configuration class.
+ * This is the finder config class.
  *
  * Each configuration is used for a "test", the Finder uses the tests to
  * determine if the matched file fulfills the tests condition. Note that setter
