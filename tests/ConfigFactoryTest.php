@@ -11,7 +11,6 @@
 
 namespace StyleCI\Tests\Config;
 
-use Exception;
 use GrahamCampbell\TestBench\AbstractTestCase;
 use StyleCI\Config\ConfigFactory;
 use StyleCI\Config\FinderConfig;
