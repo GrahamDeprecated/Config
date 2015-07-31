@@ -54,6 +54,7 @@ class Config
         'line_after_namespace',
         'list_commas',
         'logical_not_operators_with_spaces',
+        'logical_not_operators_with_successor_space',
         'long_array_syntax',
         'lowercase_constants',
         'lowercase_keywords',
