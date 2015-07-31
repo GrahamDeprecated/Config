@@ -83,6 +83,8 @@ class ConfigFactory
      *
      * Note that fairly strict validation happens during this process.
      *
+     * @param string $yaml
+     *
      * @throws \StyleCI\Config\Exceptions\ConfigExceptionInterface
      *
      * @return \StyleCI\Config\Config
