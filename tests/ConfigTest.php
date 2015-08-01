@@ -89,7 +89,21 @@ class ConfigTest extends AbstractTestCase
 
     /**
      * @expectedException \StyleCI\Config\Exceptions\InvalidFixerException
-     * @expectedExceptionMessage The provided fixer was not valid.
+     * @expectedExceptionMessage The provided fixer '123' was not valid.
+     */
+    public function testEnableInvalidNumericFixer()
+    {
+        try {
+            (new Config())->enable(123);
+        } catch (Exception $e) {
+            $this->assertSame(123, $e->getFixer());
+            throw $e;
+        }
+    }
+
+    /**
+     * @expectedException \StyleCI\Config\Exceptions\InvalidFixerException
+     * @expectedExceptionMessage A provided fixer was not valid.
      */
     public function testEnableInvalidFixerAgain()
     {
@@ -149,7 +163,7 @@ class ConfigTest extends AbstractTestCase
 
     /**
      * @expectedException \StyleCI\Config\Exceptions\InvalidPresetException
-     * @expectedExceptionMessage The provided preset was not valid.
+     * @expectedExceptionMessage A provided preset was not valid.
      */
     public function testEnableInvalidPresetAgain()
     {
@@ -190,7 +204,7 @@ class ConfigTest extends AbstractTestCase
     public function testDisableInvalidFixer()
     {
         try {
-            $config = (new Config())->preset('psr2')->disable('foo');
+            (new Config())->preset('psr2')->disable('foo');
         } catch (Exception $e) {
             $this->assertSame('foo', $e->getFixer());
             throw $e;
@@ -204,7 +218,7 @@ class ConfigTest extends AbstractTestCase
     public function testDisableBadFixer()
     {
         try {
-            $config = (new Config())->preset('psr2')->disable('psr0');
+            (new Config())->preset('psr2')->disable('psr0');
         } catch (Exception $e) {
             $this->assertSame('psr0', $e->getFixer());
             throw $e;

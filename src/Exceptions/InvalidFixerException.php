@@ -38,10 +38,10 @@ class InvalidFixerException extends InvalidArgumentException implements ConfigEx
     {
         $this->fixer = $fixer;
 
-        if (is_string($fixer)) {
+        if (is_string($fixer) || is_numeric($fixer)) {
             parent::__construct("The provided fixer '$fixer' was not valid.");
         } else {
-            parent::__construct('The provided fixer was not valid.');
+            parent::__construct('A provided fixer was not valid.');
         }
     }
 

@@ -13,6 +13,8 @@ namespace StyleCI\Config;
 
 use Exception;
 use InvalidArgumentException;
+use StyleCI\Config\Exceptions\InvalidConfigOptionException;
+use StyleCI\Config\Exceptions\InvalidFinderOptionException;
 use StyleCI\Config\Exceptions\InvalidYamlException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -36,6 +38,12 @@ class ConfigFactory
      */
     public function make(array $input = [])
     {
+        foreach ($input as $option => $value) {
+            if (!in_array($option, ['preset', 'linting', 'disabled', 'enabled', 'finder'], true)) {
+                throw new InvalidConfigOptionException($option);
+            }
+        }
+
         $config = new Config();
 
         $config->preset(Arr::get($input, 'preset', 'recommended'));
@@ -64,18 +72,24 @@ class ConfigFactory
      */
     public function makeFinderConfig(array $input = [])
     {
-        $finderConfig = new FinderConfig();
+        foreach ($input as $option => $value) {
+            if (!in_array($option, ['exclude', 'name', 'not-name', 'contains', 'not-contains', 'path', 'not-path', 'depth'], true)) {
+                throw new InvalidFinderOptionException($option);
+            }
+        }
 
-        $finderConfig->exclude((array) Arr::get($input, 'exclude', ['storage', 'vendor']));
-        $finderConfig->name((array) Arr::get($input, 'name', ['*.php']));
-        $finderConfig->notName((array) Arr::get($input, 'not-name', ['*.blade.php']));
-        $finderConfig->contains((array) Arr::get($input, 'contains', []));
-        $finderConfig->notContains((array) Arr::get($input, 'not-contains', []));
-        $finderConfig->path((array) Arr::get($input, 'path', []));
-        $finderConfig->notPath((array) Arr::get($input, 'not-path', []));
-        $finderConfig->depth((array) Arr::get($input, 'depth', []));
+        $config = new FinderConfig();
 
-        return $finderConfig;
+        $config->exclude((array) Arr::get($input, 'exclude', ['storage', 'vendor']));
+        $config->name((array) Arr::get($input, 'name', ['*.php']));
+        $config->notName((array) Arr::get($input, 'not-name', ['*.blade.php']));
+        $config->contains((array) Arr::get($input, 'contains', []));
+        $config->notContains((array) Arr::get($input, 'not-contains', []));
+        $config->path((array) Arr::get($input, 'path', []));
+        $config->notPath((array) Arr::get($input, 'not-path', []));
+        $config->depth((array) Arr::get($input, 'depth', []));
+
+        return $config;
     }
 
     /**

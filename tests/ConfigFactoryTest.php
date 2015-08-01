@@ -11,6 +11,7 @@
 
 namespace StyleCI\Tests\Config;
 
+use Exception;
 use GrahamCampbell\TestBench\AbstractTestCase;
 use StyleCI\Config\ConfigFactory;
 use StyleCI\Config\FinderConfig;
@@ -47,6 +48,34 @@ class ConfigFactoryTest extends AbstractTestCase
         $this->assertInArray('phpdoc_no_empty_return', $config->getFixers());
         $this->assertNotContains('strict', $config->getFixers());
         $this->assertTrue($config->isLinting());
+    }
+
+    /**
+     * @expectedException \StyleCI\Config\Exceptions\InvalidConfigOptionException
+     * @expectedExceptionMessage The provided config option 'presett' was not valid.
+     */
+    public function testMakeInvalidConfigOption()
+    {
+        try {
+            (new ConfigFactory())->make(['presett' => 'symfony']);
+        } catch (Exception $e) {
+            $this->assertSame('presett', $e->getOption());
+            throw $e;
+        }
+    }
+
+    /**
+     * @expectedException \StyleCI\Config\Exceptions\InvalidFinderOptionException
+     * @expectedExceptionMessage The provided finder option 'foo' was not valid.
+     */
+    public function testMakeInvalidFinderOption()
+    {
+        try {
+            (new ConfigFactory())->make(['finder' => ['foo' => 'bar']]);
+        } catch (Exception $e) {
+            $this->assertSame('foo', $e->getOption());
+            throw $e;
+        }
     }
 
     public function testMakeConfigFromYml()

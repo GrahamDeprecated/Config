@@ -38,10 +38,10 @@ class InvalidPresetException extends InvalidArgumentException implements ConfigE
     {
         $this->preset = $preset;
 
-        if (is_string($preset)) {
+        if (is_string($preset) || is_numeric($preset)) {
             parent::__construct("The provided preset '$preset' was not valid.");
         } else {
-            parent::__construct('The provided preset was not valid.');
+            parent::__construct('A provided preset was not valid.');
         }
     }
 
