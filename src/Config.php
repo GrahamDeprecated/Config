@@ -131,6 +131,7 @@ class Config
      */
     const PSR1_FIXERS = [
         'encoding',
+        'psr4',
         'short_tag',
     ];
 
@@ -155,6 +156,7 @@ class Config
         'multiple_use',
         'parenthesis',
         'php_closing_tag',
+        'psr4',
         'short_tag',
         'single_line_after_imports',
         'trailing_spaces',
@@ -215,7 +217,7 @@ class Config
         'phpdoc_var_without_name',
         'php_closing_tag',
         'pre_increment',
-        'psr0',
+        'psr4',
         'remove_leading_slash_use',
         'remove_lines_between_uses',
         'return',
@@ -289,6 +291,7 @@ class Config
         'phpdoc_type_to_var',
         'phpdoc_types',
         'phpdoc_var_without_name',
+        'psr4',
         'remove_leading_slash_use',
         'remove_lines_between_uses',
         'return',
@@ -369,7 +372,7 @@ class Config
         'phpdoc_types',
         'phpdoc_var_without_name',
         'php_closing_tag',
-        'psr0',
+        'psr4',
         'remove_leading_slash_use',
         'remove_lines_between_uses',
         'return',
