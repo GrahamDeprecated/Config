@@ -28,7 +28,7 @@ class ConfigFactoryTest extends AbstractTestCase
     {
         $config = (new ConfigFactory())->make();
 
-        $this->assertInArray('psr0', $config->getFixers());
+        $this->assertInArray('psr4', $config->getFixers());
         $this->assertInArray('encoding', $config->getFixers());
         $this->assertInArray('elseif', $config->getFixers());
         $this->assertNotContains('strict_param', $config->getFixers());
@@ -43,7 +43,7 @@ class ConfigFactoryTest extends AbstractTestCase
     {
         $config = (new ConfigFactory())->make(['preset' => 'symfony']);
 
-        $this->assertInArray('psr0', $config->getFixers());
+        $this->assertInArray('psr4', $config->getFixers());
         $this->assertInArray('unused_use', $config->getFixers());
         $this->assertInArray('phpdoc_no_empty_return', $config->getFixers());
         $this->assertNotContains('strict', $config->getFixers());

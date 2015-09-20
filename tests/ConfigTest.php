@@ -30,7 +30,7 @@ class ConfigTest extends AbstractTestCase
 
         $this->assertInArray('elseif', $fixers);
         $this->assertInArray('encoding', $fixers);
-        $this->assertInArray('psr0', $fixers);
+        $this->assertInArray('psr4', $fixers);
         $this->assertNotContains('logical_not_operators_with_spaces', $fixers);
     }
 
@@ -180,10 +180,10 @@ class ConfigTest extends AbstractTestCase
         $config = new Config();
 
         $config->preset('recommended');
-        $this->assertInArray('psr0', $config->getFixers());
+        $this->assertInArray('psr4', $config->getFixers());
 
-        $config->disable('psr0');
-        $this->assertNotContains('psr0', $config->getFixers());
+        $config->disable('psr4');
+        $this->assertNotContains('psr4', $config->getFixers());
     }
 
     public function testDisableConfigWithAlias()
