@@ -84,7 +84,7 @@ class Config
         'phpdoc_order',
         'phpdoc_scalar',
         'phpdoc_separation',
-        'phpdoc_short_description',
+        'phpdoc_summary',
         'phpdoc_to_comment',
         'phpdoc_trim',
         'phpdoc_type_to_var',
@@ -209,7 +209,7 @@ class Config
         'phpdoc_no_package',
         'phpdoc_scalar',
         'phpdoc_separation',
-        'phpdoc_short_description',
+        'phpdoc_summary',
         'phpdoc_to_comment',
         'phpdoc_trim',
         'phpdoc_type_to_var',
@@ -285,7 +285,7 @@ class Config
         'phpdoc_no_access',
         'phpdoc_no_package',
         'phpdoc_scalar',
-        'phpdoc_short_description',
+        'phpdoc_summary',
         'phpdoc_to_comment',
         'phpdoc_trim',
         'phpdoc_type_to_var',
@@ -365,7 +365,7 @@ class Config
         'phpdoc_order',
         'phpdoc_scalar',
         'phpdoc_separation',
-        'phpdoc_short_description',
+        'phpdoc_summary',
         'phpdoc_to_comment',
         'phpdoc_trim',
         'phpdoc_type_to_var',
@@ -402,8 +402,9 @@ class Config
      * @var string[]
      */
     const ALIASES = [
-        'phpdoc_params' => 'phpdoc_align',
-        'join_function' => 'alias_functions',
+        'phpdoc_params'            => 'phpdoc_align',
+        'phpdoc_short_description' => 'phpdoc_summary',
+        'join_function'            => 'alias_functions',
     ];
 
     /**
