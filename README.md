@@ -10,7 +10,7 @@
 
 ## Installation
 
-Either [PHP](https://php.net) 5.6+ or [HHVM](http://hhvm.com) 3.9+ are required.
+[PHP](https://php.net) 5.6+ is required.
 
 To get the latest version of StyleCI Config, simply require the project using [Composer](https://getcomposer.org):
 
