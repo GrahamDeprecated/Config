@@ -82,6 +82,7 @@ class Config
         'phpdoc_no_empty_return',
         'phpdoc_no_package',
         'phpdoc_order',
+        'phpdoc_property',
         'phpdoc_scalar',
         'phpdoc_separation',
         'phpdoc_summary',
