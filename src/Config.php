@@ -34,6 +34,8 @@ class Config
         'alias_functions',
         'align_double_arrow',
         'align_equals',
+        'array_element_no_space_before_comma',
+        'array_element_white_space_after_comma',
         'blankline_after_open_tag',
         'braces',
         'concat_without_spaces',
@@ -171,6 +173,8 @@ class Config
      */
     const SYMFONY_FIXERS = [
         'alias_functions',
+        'array_element_no_space_before_comma',
+        'array_element_white_space_after_comma',
         'blankline_after_open_tag',
         'braces',
         'concat_without_spaces',
@@ -249,6 +253,8 @@ class Config
      */
     const LARAVEL_FIXERS = [
         'alias_functions',
+        'array_element_no_space_before_comma',
+        'array_element_white_space_after_comma',
         'blankline_after_open_tag',
         'braces',
         'concat_without_spaces',
@@ -325,6 +331,8 @@ class Config
     const RECOMMENDED_FIXERS = [
         'alias_functions',
         'align_double_arrow',
+        'array_element_no_space_before_comma',
+        'array_element_white_space_after_comma',
         'blankline_after_open_tag',
         'braces',
         'concat_without_spaces',
