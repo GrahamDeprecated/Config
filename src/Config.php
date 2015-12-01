@@ -42,6 +42,7 @@ class Config
         'concat_with_spaces',
         'double_arrow_multiline_whitespaces',
         'duplicate_semicolon',
+        'echo_to_print',
         'elseif',
         'empty_return',
         'encoding',
@@ -98,6 +99,7 @@ class Config
         'pre_increment',
         'php_unit_construct',
         'php_unit_strict',
+        'print_to_echo',
         'psr0',
         'psr4',
         'remove_leading_slash_use',
@@ -423,6 +425,7 @@ class Config
      */
     const CONFLICTS = [
         'concat_with_spaces'              => 'concat_without_spaces',
+        'echo_to_print'                   => 'print_to_echo',
         'long_array_syntax'               => 'short_array_syntax',
         'no_blank_lines_before_namespace' => 'single_blank_line_before_namespace',
         'phpdoc_var_to_type'              => 'phpdoc_type_to_var',
