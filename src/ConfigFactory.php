@@ -17,6 +17,7 @@ use StyleCI\Config\Exceptions\InvalidConfigOptionException;
 use StyleCI\Config\Exceptions\InvalidFinderOptionException;
 use StyleCI\Config\Exceptions\InvalidYamlException;
 use Symfony\Component\Yaml\Yaml;
+use Throwable;
 
 /**
  * This is the config factory class.
@@ -108,6 +109,8 @@ class ConfigFactory
         try {
             $parsed = Yaml::parse($yaml, true);
         } catch (Exception $e) {
+            throw new InvalidYamlException($e);
+        } catch (Throwable $e) {
             throw new InvalidYamlException($e);
         }
 
