@@ -117,7 +117,7 @@ class ConfigTest extends AbstractTestCase
 
     /**
      * @expectedException \StyleCI\Config\Exceptions\RiskyFixerException
-     * @expectedExceptionMessage A provided risky fixer 'psr4' is not allowed.
+     * @expectedExceptionMessage The provided risky fixer 'psr4' is not allowed.
      */
     public function testEnableRiskyFixer()
     {
