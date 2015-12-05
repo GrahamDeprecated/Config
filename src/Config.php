@@ -628,7 +628,7 @@ class Config
             }
         }
 
-        return $this->fixers;
+        return array_values($this->fixers);
     }
 
     /**
