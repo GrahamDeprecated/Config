@@ -546,17 +546,15 @@ class Config
             throw new InvalidPresetException($preset);
         }
 
-        if ($this->allowRisky) {
-            $this->fixers = $fixers;
-        } else {
-            $this->fixers = [];
-
-            foreach ($fixers as $fixer) {
-                if (!in_array($fixer, static::RISKY, true)) {
-                    $this->fixers[] = $fixer;
+        if (!$this->allowRisky) {
+            foreach ($fixers as $key => $fixer) {
+                if (in_array($fixer, static::RISKY, true)) {
+                    unset($fixers[$key]);
                 }
             }
         }
+
+        $this->fixers = $fixers;
 
         return $this;
     }
