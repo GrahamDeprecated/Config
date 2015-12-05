@@ -40,12 +40,12 @@ class ConfigFactory
     public function make(array $input = [])
     {
         foreach ($input as $option => $value) {
-            if (!in_array($option, ['preset', 'linting', 'disabled', 'enabled', 'finder'], true)) {
+            if (!in_array($option, ['preset', 'risky', 'linting', 'disabled', 'enabled', 'finder'], true)) {
                 throw new InvalidConfigOptionException($option);
             }
         }
 
-        $config = new Config();
+        $config = new Config(Arr::get($input, 'risky', true));
 
         $config->preset(Arr::get($input, 'preset', 'recommended'));
 

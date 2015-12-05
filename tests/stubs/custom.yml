@@ -6,3 +6,5 @@ enabled:
 disabled: encoding
 
 linting: false
+
+risky: false

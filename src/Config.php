@@ -16,6 +16,7 @@ use StyleCI\Config\Exceptions\FixerNotEnabledException;
 use StyleCI\Config\Exceptions\InvalidFixerException;
 use StyleCI\Config\Exceptions\InvalidFixersException;
 use StyleCI\Config\Exceptions\InvalidPresetException;
+use StyleCI\Config\Exceptions\RiskyFixerException;
 
 /**
  * This is the config class.
@@ -129,6 +130,22 @@ class Config
         'unused_use',
         'visibility',
         'whitespacy_lines',
+    ];
+
+    /**
+     * The list of risky fixers.
+     *
+     * @var string[]
+     */
+    const RISKY = [
+        'ereg_to_preg',
+        'php4_constructor',
+        'php_unit_construct',
+        'php_unit_strict',
+        'psr0',
+        'psr4',
+        'strict',
+        'strict_param',
     ];
 
     /**
@@ -460,11 +477,30 @@ class Config
     protected $linting = true;
 
     /**
+     * Are risky fixers allowed?
+     *
+     * @var bool
+     */
+    protected $allowRisky;
+
+    /**
      * The finder config.
      *
      * @var \StyleCI\Config\FinderConfig|null
      */
     protected $finderConfig;
+
+    /**
+     * Create a new config instance.
+     *
+     * @param bool $allowRisky
+     *
+     * @return void
+     */
+    public function __construct($allowRisky = true)
+    {
+        $this->allowRisky = $allowRisky;
+    }
 
     /**
      * Resolve the fixer name if it's a valid fixer.
@@ -503,12 +539,22 @@ class Config
     public function preset($preset)
     {
         if ($preset === 'none') {
-            $this->fixers = [];
+            $fixers = [];
         } elseif (is_string($preset) && defined($constant = 'static::'.strtoupper(str_replace('psr-', 'psr', $preset)).'_FIXERS')) {
-            $this->fixers = constant($constant);
+            $fixers = constant($constant);
         } else {
             throw new InvalidPresetException($preset);
         }
+
+        if (!$this->allowRisky) {
+            foreach ($fixers as $key => $fixer) {
+                if (in_array($fixer, static::RISKY, true)) {
+                    unset($fixers[$key]);
+                }
+            }
+        }
+
+        $this->fixers = $fixers;
 
         return $this;
     }
@@ -518,7 +564,7 @@ class Config
      *
      * @param string $fixer
      *
-     * @throws \StyleCI\Config\Exceptions\FixerAlreadyEnabledException|\StyleCI\Config\Exceptions\InvalidFixerException
+     * @throws \StyleCI\Config\Exceptions\FixerAlreadyEnabledException|\StyleCI\Config\Exceptions\InvalidFixerException|\StyleCI\Config\Exceptions\RiskyFixerException
      *
      * @return \StyleCI\Config\Config
      */
@@ -528,6 +574,10 @@ class Config
 
         if (!$resolved) {
             throw new InvalidFixerException($fixer);
+        }
+
+        if (!$this->allowRisky && in_array($resolved, static::RISKY, true)) {
+            throw new RiskyFixerException($fixer);
         }
 
         if (!Arr::add($this->fixers, $resolved)) {
