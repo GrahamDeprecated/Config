@@ -116,6 +116,20 @@ class ConfigTest extends AbstractTestCase
     }
 
     /**
+     * @expectedException \StyleCI\Config\Exceptions\RiskyFixerException
+     * @expectedExceptionMessage The provided risky fixer 'psr4' is not allowed.
+     */
+    public function testEnableRiskyFixer()
+    {
+        try {
+            (new Config(false))->enable('psr4');
+        } catch (Exception $e) {
+            $this->assertSame('psr4', $e->getFixer());
+            throw $e;
+        }
+    }
+
+    /**
      * @expectedException \StyleCI\Config\Exceptions\FixerAlreadyEnabledException
      * @expectedExceptionMessage The provided fixer 'phpdoc_indent' cannot be enabled again because it was already enabled by your preset.
      */
@@ -149,14 +163,14 @@ class ConfigTest extends AbstractTestCase
 
     /**
      * @expectedException \StyleCI\Config\Exceptions\InvalidPresetException
-     * @expectedExceptionMessage The provided preset 'valid' was not valid.
+     * @expectedExceptionMessage The provided preset 'invalid' was not valid.
      */
     public function testEnableInvalidPreset()
     {
         try {
-            (new Config())->preset('valid');
+            (new Config())->preset('invalid');
         } catch (Exception $e) {
-            $this->assertSame('valid', $e->getPreset());
+            $this->assertSame('invalid', $e->getPreset());
             throw $e;
         }
     }
@@ -173,6 +187,20 @@ class ConfigTest extends AbstractTestCase
             $this->assertSame([], $e->getPreset());
             throw $e;
         }
+    }
+
+    public function testPsr1PresetWithRisky()
+    {
+        $config = (new Config(true))->preset('psr1');
+
+        $this->assertSame(['encoding', 'psr4', 'short_tag'], $config->getFixers());
+    }
+
+    public function testPsr1PresetWithoutRisky()
+    {
+        $config = (new Config(false))->preset('psr1');
+
+        $this->assertSame(['encoding', 'short_tag'], $config->getFixers());
     }
 
     public function testDisableConfig()

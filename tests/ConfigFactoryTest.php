@@ -39,13 +39,24 @@ class ConfigFactoryTest extends AbstractTestCase
         $this->assertEquals([], $config->getFinderConfig()->getNotPath());
     }
 
-    public function testMakeConfigWithOptions()
+    public function testMakeConfigSymfonyWithOptions()
     {
         $config = (new ConfigFactory())->make(['preset' => 'symfony']);
 
         $this->assertInArray('psr4', $config->getFixers());
         $this->assertInArray('unused_use', $config->getFixers());
         $this->assertInArray('phpdoc_no_empty_return', $config->getFixers());
+        $this->assertNotContains('strict', $config->getFixers());
+        $this->assertTrue($config->isLinting());
+    }
+
+    public function testMakeConfigSymfonyWithOptionsNoRisky()
+    {
+        $config = (new ConfigFactory())->make(['preset' => 'symfony', 'risky' => false]);
+
+        $this->assertInArray('unused_use', $config->getFixers());
+        $this->assertInArray('phpdoc_no_empty_return', $config->getFixers());
+        $this->assertNotContains('psr4', $config->getFixers());
         $this->assertNotContains('strict', $config->getFixers());
         $this->assertTrue($config->isLinting());
     }
@@ -89,8 +100,7 @@ class ConfigFactoryTest extends AbstractTestCase
     {
         $config = (new ConfigFactory())->makeFromYaml(file_get_contents(__DIR__.'/stubs/custom.yml'));
 
-        $this->assertInArray('phpdoc_no_package', $config->getFixers());
-        $this->assertNotContains('encoding', $config->getFixers());
+        $this->assertSame(['short_tag', 'phpdoc_no_package'], $config->getFixers());
         $this->assertFalse($config->isLinting());
     }
 
