@@ -286,7 +286,6 @@ class Config
         'array_element_white_space_after_comma',
         'blankline_after_open_tag',
         'braces',
-        'class_definition',
         'concat_without_spaces',
         'double_arrow_multiline_whitespaces',
         'duplicate_semicolon',
