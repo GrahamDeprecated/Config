@@ -1,6 +1,7 @@
 # StyleCI Config ![Analytics](https://ga-beacon.appspot.com/UA-60053271-6/StyleCI/Config?pixel)
 
 
+<a href="https://styleci.io/repos/31083471"><img src="https://styleci.io/repos/31083471/shield" alt="StyleCI Status"></img></a>
 <a href="https://travis-ci.org/StyleCI/Config"><img src="https://img.shields.io/travis/StyleCI/Config/master.svg?style=flat-square" alt="Build Status"></img></a>
 <a href="https://scrutinizer-ci.com/g/StyleCI/Config/code-structure"><img src="https://img.shields.io/scrutinizer/coverage/g/StyleCI/Config.svg?style=flat-square" alt="Coverage Status"></img></a>
 <a href="https://scrutinizer-ci.com/g/StyleCI/Config"><img src="https://img.shields.io/scrutinizer/g/StyleCI/Config.svg?style=flat-square" alt="Quality Score"></img></a>
