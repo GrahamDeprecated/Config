@@ -24,7 +24,7 @@ Instead, you may of course manually update your require block and run `composer 
 ```json
 {
     "require": {
-        "styleci/config": "^2.0"
+        "styleci/config": "^3.0"
     }
 }
 ```
