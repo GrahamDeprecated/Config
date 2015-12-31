@@ -11,7 +11,6 @@
 
 namespace StyleCI\Config;
 
-use Exception;
 use InvalidArgumentException;
 use StyleCI\Config\Exceptions\InvalidConfigOptionException;
 use StyleCI\Config\Exceptions\InvalidFinderOptionException;
@@ -108,8 +107,6 @@ class ConfigFactory
     {
         try {
             $parsed = Yaml::parse($yaml, true);
-        } catch (Exception $e) {
-            throw new InvalidYamlException($e);
         } catch (Throwable $e) {
             throw new InvalidYamlException($e);
         }

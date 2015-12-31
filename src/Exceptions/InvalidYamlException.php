@@ -12,6 +12,7 @@
 namespace StyleCI\Config\Exceptions;
 
 use RuntimeException;
+use Throwable;
 
 /**
  * This is the invalid yaml exception class.
@@ -27,7 +28,7 @@ class InvalidYamlException extends RuntimeException implements ConfigExceptionIn
      *
      * @return void
      */
-    public function __construct($previous)
+    public function __construct(Throwable $previous)
     {
         parent::__construct($previous->getMessage(), $previous->getCode(), $previous);
     }
