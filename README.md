@@ -11,7 +11,7 @@
 
 ## Installation
 
-[PHP](https://php.net) 5.6+ is required.
+[PHP](https://php.net) 7.0+ is required.
 
 To get the latest version of StyleCI Config, simply require the project using [Composer](https://getcomposer.org):
 
