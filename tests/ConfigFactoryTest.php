@@ -128,8 +128,7 @@ class ConfigFactoryTest extends AbstractTestCase
     }
 
     /**
-     * @expectedException \StyleCI\Config\Exceptions\InvalidYamlException
-     * @expectedExceptionMessage The yaml must represent an array.
+     * @expectedException \TypeError
      */
     public function testMakeNonArrayConfig()
     {
