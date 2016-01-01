@@ -516,11 +516,11 @@ class Config
     /**
      * Resolve the fixer name if it's a valid fixer.
      *
-     * @param string $fixer
+     * @param mixed $fixer
      *
      * @return string|null
      */
-    public static function resolveFixer(string $fixer)
+    public static function resolveFixer($fixer)
     {
         if (!is_string($fixer)) {
             return;
@@ -541,13 +541,13 @@ class Config
      * It should be noted that this will totally discard the list of already
      * enabled fixers, not append to it.
      *
-     * @param string $preset
+     * @param mixed $preset
      *
      * @throws \StyleCI\Config\Exceptions\InvalidPresetException
      *
      * @return \StyleCI\Config\Config
      */
-    public function preset(string $preset)
+    public function preset($preset)
     {
         if ($preset === 'none') {
             $fixers = [];
@@ -573,13 +573,13 @@ class Config
     /**
      * Enable a fixer, if not already enabled.
      *
-     * @param string $fixer
+     * @param mixed $fixer
      *
      * @throws \StyleCI\Config\Exceptions\FixerAlreadyEnabledException|\StyleCI\Config\Exceptions\InvalidFixerException|\StyleCI\Config\Exceptions\RiskyFixerException
      *
      * @return \StyleCI\Config\Config
      */
-    public function enable(string $fixer)
+    public function enable($fixer)
     {
         $resolved = static::resolveFixer($fixer);
 
@@ -601,13 +601,13 @@ class Config
     /**
      * Disable a fixer, if already enabled.
      *
-     * @param string $fixer
+     * @param mixed $fixer
      *
      * @throws \StyleCI\Config\Exceptions\FixerNotEnabledException|\StyleCI\Config\Exceptions\InvalidFixerException
      *
      * @return \StyleCI\Config\Config
      */
-    public function disable(string $fixer)
+    public function disable($fixer)
     {
         $resolved = static::resolveFixer($fixer);
 
