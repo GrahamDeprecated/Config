@@ -146,6 +146,7 @@ class Config
      */
     const RISKY = [
         'ereg_to_preg',
+        'method_argument_default_value',
         'php4_constructor',
         'php_unit_construct',
         'php_unit_strict',
