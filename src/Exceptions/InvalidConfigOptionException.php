@@ -43,7 +43,7 @@ class InvalidConfigOptionException extends InvalidArgumentException implements C
         if (is_scalar($option)) {
             parent::__construct("The provided config option '$option' was not valid.");
         } else {
-            parent::__construct("A provided config option was not valid.");
+            parent::__construct('A provided config option was not valid.');
         }
     }
 
