@@ -43,7 +43,7 @@ class InvalidFinderOptionException extends InvalidArgumentException implements C
         if (is_scalar($option)) {
             parent::__construct("The provided finder option '$option' was not valid.");
         } else {
-            parent::__construct("A provided finder option was not valid.");
+            parent::__construct('A provided finder option was not valid.');
         }
     }
 
