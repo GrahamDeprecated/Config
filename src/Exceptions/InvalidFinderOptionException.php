@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of StyleCI.
  *
@@ -23,14 +25,14 @@ class InvalidFinderOptionException extends InvalidArgumentException implements C
     /**
      * The invalid finder option.
      *
-     * @var string
+     * @var mixed
      */
     protected $option;
 
     /**
      * Create a new invalid finder option exception instance.
      *
-     * @param string $option
+     * @param mixed $option
      *
      * @return void
      */
@@ -38,13 +40,17 @@ class InvalidFinderOptionException extends InvalidArgumentException implements C
     {
         $this->option = $option;
 
-        parent::__construct("The provided finder option '$option' was not valid.");
+        if (is_scalar($option)) {
+            parent::__construct("The provided finder option '$option' was not valid.");
+        } else {
+            parent::__construct("A provided finder option was not valid.");
+        }
     }
 
     /**
      * Get the invalid finder option.
      *
-     * @return string
+     * @return mixed
      */
     public function getOption()
     {

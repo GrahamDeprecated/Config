@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of StyleCI.
  *
@@ -23,18 +25,18 @@ class RiskyFixerException extends InvalidArgumentException implements ConfigExce
     /**
      * The risky fixer.
      *
-     * @var mixed
+     * @var string
      */
     protected $fixer;
 
     /**
      * Create a new risky fixer exception instance.
      *
-     * @param mixed $fixer
+     * @param string $fixer
      *
      * @return void
      */
-    public function __construct($fixer)
+    public function __construct(string $fixer)
     {
         $this->fixer = $fixer;
 
@@ -44,7 +46,7 @@ class RiskyFixerException extends InvalidArgumentException implements ConfigExce
     /**
      * Get the risky fixer.
      *
-     * @return mixed
+     * @return string
      */
     public function getFixer()
     {

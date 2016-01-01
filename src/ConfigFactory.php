@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of StyleCI.
  *
@@ -103,7 +105,7 @@ class ConfigFactory
      *
      * @return \StyleCI\Config\Config
      */
-    public function makeFromYaml($yaml)
+    public function makeFromYaml(string $yaml)
     {
         try {
             $parsed = Yaml::parse($yaml, true);

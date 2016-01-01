@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of StyleCI.
  *
@@ -23,7 +25,7 @@ class FixerAlreadyEnabledException extends InvalidArgumentException implements C
     /**
      * The fixer.
      *
-     * @var mixed
+     * @var string
      */
     protected $fixer;
 
@@ -34,7 +36,7 @@ class FixerAlreadyEnabledException extends InvalidArgumentException implements C
      *
      * @return void
      */
-    public function __construct($fixer)
+    public function __construct(string $fixer)
     {
         $this->fixer = $fixer;
 
@@ -44,7 +46,7 @@ class FixerAlreadyEnabledException extends InvalidArgumentException implements C
     /**
      * Get the fixer.
      *
-     * @return mixed
+     * @return string
      */
     public function getFixer()
     {

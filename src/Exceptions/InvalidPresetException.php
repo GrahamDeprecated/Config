@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of StyleCI.
  *
@@ -38,7 +40,7 @@ class InvalidPresetException extends InvalidArgumentException implements ConfigE
     {
         $this->preset = $preset;
 
-        if (is_string($preset) || is_numeric($preset)) {
+        if (is_scalar($preset)) {
             parent::__construct("The provided preset '$preset' was not valid.");
         } else {
             parent::__construct('A provided preset was not valid.');

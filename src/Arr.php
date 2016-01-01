@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of StyleCI.
  *
@@ -28,7 +30,7 @@ class Arr
      *
      * @return mixed
      */
-    public static function get(&$array, $key, $default = null)
+    public static function get(array &$array, string $key, $default = null)
     {
         return isset($array[$key]) ? $array[$key] : $default;
     }
@@ -41,7 +43,7 @@ class Arr
      *
      * @return bool
      */
-    public static function add(&$array, $item)
+    public static function add(array &$array, $item)
     {
         if (!in_array($item, $array, true)) {
             $array[] = $item;
@@ -60,7 +62,7 @@ class Arr
      *
      * @return bool
      */
-    public static function remove(&$array, $item)
+    public static function remove(array &$array, $item)
     {
         $index = array_search($item, $array, true);
 

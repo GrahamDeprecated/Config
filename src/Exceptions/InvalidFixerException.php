@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of StyleCI.
  *
@@ -38,7 +40,7 @@ class InvalidFixerException extends InvalidArgumentException implements ConfigEx
     {
         $this->fixer = $fixer;
 
-        if (is_string($fixer) || is_numeric($fixer)) {
+        if (is_scalar($fixer)) {
             parent::__construct("The provided fixer '$fixer' was not valid.");
         } else {
             parent::__construct('A provided fixer was not valid.');

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of StyleCI.
  *
@@ -23,14 +25,14 @@ class InvalidConfigOptionException extends InvalidArgumentException implements C
     /**
      * The invalid config option.
      *
-     * @var string
+     * @var mixed
      */
     protected $option;
 
     /**
      * Create a new invalid config option exception instance.
      *
-     * @param string $option
+     * @param mixed $option
      *
      * @return void
      */
@@ -38,13 +40,17 @@ class InvalidConfigOptionException extends InvalidArgumentException implements C
     {
         $this->option = $option;
 
-        parent::__construct("The provided config option '$option' was not valid.");
+        if (is_scalar($option)) {
+            parent::__construct("The provided config option '$option' was not valid.");
+        } else {
+            parent::__construct("A provided config option was not valid.");
+        }
     }
 
     /**
      * Get the invalid config option.
      *
-     * @return string
+     * @return mixed
      */
     public function getOption()
     {

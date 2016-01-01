@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of StyleCI.
  *
@@ -506,7 +508,7 @@ class Config
      *
      * @return void
      */
-    public function __construct($allowRisky = true)
+    public function __construct(bool $allowRisky = true)
     {
         $this->allowRisky = $allowRisky;
     }
@@ -518,7 +520,7 @@ class Config
      *
      * @return string|null
      */
-    public static function resolveFixer($fixer)
+    public static function resolveFixer(string $fixer)
     {
         if (!is_string($fixer)) {
             return;
@@ -545,7 +547,7 @@ class Config
      *
      * @return \StyleCI\Config\Config
      */
-    public function preset($preset)
+    public function preset(string $preset)
     {
         if ($preset === 'none') {
             $fixers = [];
@@ -577,7 +579,7 @@ class Config
      *
      * @return \StyleCI\Config\Config
      */
-    public function enable($fixer)
+    public function enable(string $fixer)
     {
         $resolved = static::resolveFixer($fixer);
 
@@ -605,7 +607,7 @@ class Config
      *
      * @return \StyleCI\Config\Config
      */
-    public function disable($fixer)
+    public function disable(string $fixer)
     {
         $resolved = static::resolveFixer($fixer);
 
@@ -645,7 +647,7 @@ class Config
      *
      * @return \StyleCI\Config\Config
      */
-    public function linting($linting)
+    public function linting(bool $linting)
     {
         $this->linting = $linting;
 
