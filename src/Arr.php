@@ -32,7 +32,7 @@ class Arr
      */
     public static function get(array &$array, string $key, $default = null)
     {
-        return isset($array[$key]) ? $array[$key] : $default;
+        return $array[$key] ?? $default;
     }
 
     /**
